@@ -3,7 +3,8 @@
 //
 
 import XCTest
-@testable import IdentityAccessDomainModel
+@testable import IdentityAccessPortAdapter
+import IdentityAccessDomainModel
 
 class EthereumAccountTests: XCTestCase {
 
