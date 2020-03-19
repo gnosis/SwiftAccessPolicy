@@ -1,0 +1,10 @@
+## Build generated
+build/
+Build/
+DerivedData/
+ModuleCache/
+ModuleCache.noindex/
+Logs/
+build_logs
+Index/
+

@@ -3,7 +3,6 @@
 //
 
 import Foundation
-import Common
 
 /// ID of a user entity
 public class UserID: BaseID {}

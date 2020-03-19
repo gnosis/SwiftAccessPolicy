@@ -3,7 +3,6 @@
 //
 
 import Foundation
-import Common
 
 /// Service locator for domain model services and repositories.
 public class DomainRegistry: AbstractRegistry {

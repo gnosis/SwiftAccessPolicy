@@ -4,7 +4,6 @@
 
 import Foundation
 import IdentityAccessDomainModel
-import Common
 
 /// The application service is a thin layer implementing application's use cases with objects from the domain model.
 open class AuthenticationApplicationService {

@@ -3,7 +3,6 @@
 //
 
 import Foundation
-import Common
 
 /// Configures `Gatekeeper`'s behavior for session duration, failed auth attempt count, and block period duration.
 public struct AuthenticationPolicy: Hashable, Assertable, Codable {

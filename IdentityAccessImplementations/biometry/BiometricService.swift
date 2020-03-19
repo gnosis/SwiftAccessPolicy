@@ -3,7 +3,6 @@
 //
 
 import Foundation
-import Common
 import LocalAuthentication
 import IdentityAccessDomainModel
 import IdentityAccessApplication
@@ -68,7 +67,8 @@ public final class BiometricService: BiometricAuthenticationService {
         case .faceID: return .faceID
         case .touchID: return .touchID
         case .none:
-            ApplicationServiceRegistry.logger.error("Received unexpected biometry type: none")
+// TODO: Could not cast value of type 'IdentityAccessImplementationsTests.MockLogger'
+//            ApplicationServiceRegistry.logger.error("Received unexpected biometry type: none")
             return .none
         @unknown default:
             return .none

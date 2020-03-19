@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,9 +18,7 @@
 		0A0594B523043B9E00E71A60 /* IdentityAccessApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A0594A723043B9E00E71A60 /* IdentityAccessApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0A0594E823043CC200E71A60 /* SystemClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594CF23043CC100E71A60 /* SystemClockService.swift */; };
 		0A0594E923043CC200E71A60 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594D023043CC100E71A60 /* LocalizedString.swift */; };
-		0A0594EC23043CC200E71A60 /* DBSingleGatekeeperRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594D523043CC100E71A60 /* DBSingleGatekeeperRepository.swift */; };
 		0A0594ED23043CC200E71A60 /* InMemoryGatekeeperRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594D623043CC100E71A60 /* InMemoryGatekeeperRepository.swift */; };
-		0A0594F123043CC200E71A60 /* DBSingleUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594DB23043CC100E71A60 /* DBSingleUserRepository.swift */; };
 		0A0594F223043CC200E71A60 /* InMemoryUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594DC23043CC100E71A60 /* InMemoryUserRepository.swift */; };
 		0A0594F523043CC200E71A60 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0A0594E023043CC200E71A60 /* README.md */; };
 		0A0594F623043CC200E71A60 /* BiometricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594E223043CC200E71A60 /* BiometricService.swift */; };
@@ -50,24 +48,13 @@
 		0A0595302304493200E71A60 /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05952A2304493200E71A60 /* SessionTests.swift */; };
 		0A0595312304493200E71A60 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05952B2304493200E71A60 /* UserTests.swift */; };
 		0A0595322304493200E71A60 /* DomainRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05952C2304493200E71A60 /* DomainRegistryTests.swift */; };
-		0A0595332304496500E71A60 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADFDD8F20A0615600423554 /* Common.framework */; };
 		0A0595362304499300E71A60 /* DomainTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0595102304492600E71A60 /* DomainTestCase.swift */; };
-		0A059537230449BB00E71A60 /* CommonTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADFDD9320A0615600423554 /* CommonTestSupport.framework */; };
 		0A84C2CA230548190006DA50 /* IdentityAccessDomainModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A05946523043B7F00E71A60 /* IdentityAccessDomainModel.framework */; };
 		0A84C2CB230548190006DA50 /* IdentityAccessImplementations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A05948523043B9100E71A60 /* IdentityAccessImplementations.framework */; };
-		0A84C2CC230548190006DA50 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADFDD8F20A0615600423554 /* Common.framework */; };
-		0A84C2CD230548190006DA50 /* CommonTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADFDD9320A0615600423554 /* CommonTestSupport.framework */; };
 		0A84C2CE230548350006DA50 /* IdentityAccessImplementations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A05948523043B9100E71A60 /* IdentityAccessImplementations.framework */; };
-		0A84C2CF230548350006DA50 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADFDD8F20A0615600423554 /* Common.framework */; };
-		0A84C2D0230548350006DA50 /* CommonTestSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADFDD9320A0615600423554 /* CommonTestSupport.framework */; };
-		0AAE7C0623044D3700E7EB07 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ADFDD8F20A0615600423554 /* Common.framework */; };
-		0AAE7C0723044D3700E7EB07 /* Database.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A160BA020A0801A00E064E1 /* Database.framework */; };
 		0AAE7C0923044DDF00E7EB07 /* MockClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594CE23043CC100E71A60 /* MockClockService.swift */; };
 		0AAE7C1623044E2500E7EB07 /* InMemoryGatekeeperRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594D323043CC100E71A60 /* InMemoryGatekeeperRepositoryTests.swift */; };
-		0AAE7C1723044E2700E7EB07 /* DBSingleGatekeeperRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594D423043CC100E71A60 /* DBSingleGatekeeperRepositoryIntegrationTests.swift */; };
 		0AAE7C1823044E2F00E7EB07 /* InMemoryUserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594D923043CC100E71A60 /* InMemoryUserRepositoryTests.swift */; };
-		0AAE7C1923044E2F00E7EB07 /* DBSingleUserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594DA23043CC100E71A60 /* DBSingleUserRepositoryTests.swift */; };
-		0AAE7C1A23044E2F00E7EB07 /* DBSingleUserRepositoryIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594D823043CC100E71A60 /* DBSingleUserRepositoryIntegrationTests.swift */; };
 		0AAE7C1D23044E8B00E7EB07 /* ApplicationServiceRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059539230449DC00E71A60 /* ApplicationServiceRegistry.swift */; };
 		0AAE7C1E23044E8B00E7EB07 /* AuthenticationApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05953D230449DC00E71A60 /* AuthenticationApplicationService.swift */; };
 		0AAE7C1F23044E8B00E7EB07 /* AuthenticationMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05953A230449DC00E71A60 /* AuthenticationMethod.swift */; };
@@ -78,6 +65,10 @@
 		0AAE7C2A23044FCB00E7EB07 /* AuthenticationApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7C2723044FCB00E7EB07 /* AuthenticationApplicationServiceTests.swift */; };
 		0AAE7C2B23044FCB00E7EB07 /* ApplicationServiceRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7C2823044FCB00E7EB07 /* ApplicationServiceRegistryTests.swift */; };
 		0AAE7C2C23044FCB00E7EB07 /* ApplicationServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7C2923044FCB00E7EB07 /* ApplicationServiceTestCase.swift */; };
+		5570EEFD2423B15200576CA0 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EEFC2423B15200576CA0 /* Common.swift */; };
+		5570EEFE2423B30000576CA0 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EEFC2423B15200576CA0 /* Common.swift */; };
+		5570EEFF2423B30100576CA0 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EEFC2423B15200576CA0 /* Common.swift */; };
+		5570EF002423B73400576CA0 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EEFC2423B15200576CA0 /* Common.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,54 +93,12 @@
 			remoteGlobalIDString = 0A0594A423043B9D00E71A60;
 			remoteInfo = IdentityAccessApplication;
 		};
-		0A0595342304496900E71A60 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0A0592E7230418D500E71A60;
-			remoteInfo = Common;
-		};
-		0A160B9F20A0801A00E064E1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A160B9220A07FE100E064E1;
-			remoteInfo = Database;
-		};
 		0A84C2D12305483C0006DA50 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0AF2818F2074C18B00D3843D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 0A05948423043B9100E71A60;
 			remoteInfo = IdentityAccessImplementations;
-		};
-		0A8E3BB320B41AB100F002F6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A8E3B9220B419CC00F002F6;
-			remoteInfo = CommonImplementations;
-		};
-		0A8E3BB520B41AB100F002F6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A8E3B9E20B419E000F002F6;
-			remoteInfo = CommonImplementationsTests;
-		};
-		0A934D6A20B714F900F15616 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A934D4F20B711F400F15616;
-			remoteInfo = CommonIntegration;
-		};
-		0AAE7BFA230449FC00E7EB07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0A0592E7230418D500E71A60;
-			remoteInfo = Common;
 		};
 		0AAE7C0423044A0100E7EB07 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -171,69 +120,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0A05946423043B7F00E71A60;
 			remoteInfo = IdentityAccessDomainModel;
-		};
-		0AAE7C0E23044E0E00E7EB07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0A0592E7230418D500E71A60;
-			remoteInfo = Common;
-		};
-		0AAE7C1023044E0E00E7EB07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0A05935A230418F200E71A60;
-			remoteInfo = CommonImplementations;
-		};
-		0AAE7C1223044E0E00E7EB07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0A059334230418E800E71A60;
-			remoteInfo = Database;
-		};
-		0AAE7C1423044E0E00E7EB07 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0AC33EF92119C735009A5CFB;
-			remoteInfo = CommonCrypto;
-		};
-		0AC33F142119C852009A5CFB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0AC33EFA2119C735009A5CFB;
-			remoteInfo = CommonCrypto;
-		};
-		0ADFDD8E20A0615600423554 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A3FADDB207B501F00F0D214;
-			remoteInfo = Common;
-		};
-		0ADFDD9020A0615600423554 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A3FADEB207B504F00F0D214;
-			remoteInfo = CommonTests;
-		};
-		0ADFDD9220A0615600423554 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0AC17580207B73A90016320A;
-			remoteInfo = CommonTestSupport;
-		};
-		0AEF8A3320A08182006A1265 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0A160BC220A0804500E064E1;
-			remoteInfo = DatabaseTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -260,13 +146,8 @@
 		0A0594CF23043CC100E71A60 /* SystemClockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemClockService.swift; sourceTree = "<group>"; };
 		0A0594D023043CC100E71A60 /* LocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		0A0594D323043CC100E71A60 /* InMemoryGatekeeperRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InMemoryGatekeeperRepositoryTests.swift; path = ../IdentityAccessImplementations/persistence/SingleGatekeeperRepository/InMemoryGatekeeperRepositoryTests.swift; sourceTree = "<group>"; };
-		0A0594D423043CC100E71A60 /* DBSingleGatekeeperRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DBSingleGatekeeperRepositoryIntegrationTests.swift; path = ../IdentityAccessImplementations/persistence/SingleGatekeeperRepository/DBSingleGatekeeperRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
-		0A0594D523043CC100E71A60 /* DBSingleGatekeeperRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBSingleGatekeeperRepository.swift; sourceTree = "<group>"; };
 		0A0594D623043CC100E71A60 /* InMemoryGatekeeperRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryGatekeeperRepository.swift; sourceTree = "<group>"; };
-		0A0594D823043CC100E71A60 /* DBSingleUserRepositoryIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DBSingleUserRepositoryIntegrationTests.swift; path = ../IdentityAccessImplementations/persistence/SingleUserRepository/DBSingleUserRepositoryIntegrationTests.swift; sourceTree = "<group>"; };
 		0A0594D923043CC100E71A60 /* InMemoryUserRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InMemoryUserRepositoryTests.swift; path = ../IdentityAccessImplementations/persistence/SingleUserRepository/InMemoryUserRepositoryTests.swift; sourceTree = "<group>"; };
-		0A0594DA23043CC100E71A60 /* DBSingleUserRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DBSingleUserRepositoryTests.swift; path = ../IdentityAccessImplementations/persistence/SingleUserRepository/DBSingleUserRepositoryTests.swift; sourceTree = "<group>"; };
-		0A0594DB23043CC100E71A60 /* DBSingleUserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBSingleUserRepository.swift; sourceTree = "<group>"; };
 		0A0594DC23043CC100E71A60 /* InMemoryUserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryUserRepository.swift; sourceTree = "<group>"; };
 		0A0594E023043CC200E71A60 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0A0594E223043CC200E71A60 /* BiometricService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricService.swift; sourceTree = "<group>"; };
@@ -307,26 +188,13 @@
 		0A059540230449DC00E71A60 /* IdentityAccessApplication-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IdentityAccessApplication-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A059541230449DC00E71A60 /* AuthenticationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationRequest.swift; sourceTree = "<group>"; };
 		0A059543230449DC00E71A60 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
-		0A537AEA207CF0F900921FB9 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A537AEC207CF10000921FB9 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A537AEE207CF18B00921FB9 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ImplementationsConfig.xcconfig; sourceTree = "<group>"; };
-		0A537BEA207CFAF800921FB9 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A537C09207CFC1C00921FB9 /* libCommonTestSupport.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommonTestSupport.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A57F6DD207E38D900AF407D /* Library.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Library.xcodeproj; path = ../Library/Library.xcodeproj; sourceTree = "<group>"; };
-		0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = CommonConfig.xcconfig; sourceTree = "<group>"; };
-		0A5DC582209CA23F00BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A5DC584209CA24600BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A5DC586209CA24C00BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A5DC588209CA25200BA7A06 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AAE7C2723044FCB00E7EB07 /* AuthenticationApplicationServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationApplicationServiceTests.swift; sourceTree = "<group>"; };
 		0AAE7C2823044FCB00E7EB07 /* ApplicationServiceRegistryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistryTests.swift; sourceTree = "<group>"; };
 		0AAE7C2923044FCB00E7EB07 /* ApplicationServiceTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationServiceTestCase.swift; sourceTree = "<group>"; };
 		0AAE7C2D23044FFB00E7EB07 /* IdentityAccessDomainModel.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = IdentityAccessDomainModel.xctestplan; sourceTree = "<group>"; };
 		0AAE7C2E2304500D00E7EB07 /* IdentityAccessImplementations.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = IdentityAccessImplementations.xctestplan; sourceTree = "<group>"; };
 		0AAE7C2F2304501A00E7EB07 /* IdentityAccessApplication.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = IdentityAccessApplication.xctestplan; sourceTree = "<group>"; };
-		0AB0B56A216388EE00FB2435 /* TestDependencies.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = TestDependencies.xcfilelist; sourceTree = "<group>"; };
-		0ADFDD8820A0615600423554 /* Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Common.xcodeproj; path = ../Common/Common.xcodeproj; sourceTree = "<group>"; };
+		5570EEFC2423B15200576CA0 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,7 +202,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A0595332304496500E71A60 /* Common.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,8 +210,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A84C2CE230548350006DA50 /* IdentityAccessImplementations.framework in Frameworks */,
-				0A84C2CF230548350006DA50 /* Common.framework in Frameworks */,
-				0A84C2D0230548350006DA50 /* CommonTestSupport.framework in Frameworks */,
 				0A05946E23043B8000E71A60 /* IdentityAccessDomainModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,7 +218,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A059537230449BB00E71A60 /* CommonTestSupport.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,8 +225,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AAE7C0623044D3700E7EB07 /* Common.framework in Frameworks */,
-				0AAE7C0723044D3700E7EB07 /* Database.framework in Frameworks */,
 				0A05948E23043B9100E71A60 /* IdentityAccessImplementations.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,8 +242,6 @@
 			files = (
 				0A84C2CA230548190006DA50 /* IdentityAccessDomainModel.framework in Frameworks */,
 				0A84C2CB230548190006DA50 /* IdentityAccessImplementations.framework in Frameworks */,
-				0A84C2CC230548190006DA50 /* Common.framework in Frameworks */,
-				0A84C2CD230548190006DA50 /* CommonTestSupport.framework in Frameworks */,
 				0A0594AE23043B9E00E71A60 /* IdentityAccessApplication.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,10 +300,7 @@
 		0A05949123043B9100E71A60 /* IdentityAccessImplementationsTests */ = {
 			isa = PBXGroup;
 			children = (
-				0A0594D823043CC100E71A60 /* DBSingleUserRepositoryIntegrationTests.swift */,
 				0A0594D923043CC100E71A60 /* InMemoryUserRepositoryTests.swift */,
-				0A0594DA23043CC100E71A60 /* DBSingleUserRepositoryTests.swift */,
-				0A0594D423043CC100E71A60 /* DBSingleGatekeeperRepositoryIntegrationTests.swift */,
 				0A0594D323043CC100E71A60 /* InMemoryGatekeeperRepositoryTests.swift */,
 				0A05950223043D4300E71A60 /* BiometricServiceTests.swift */,
 				0A05950323043D4300E71A60 /* EncryptionServiceTests.swift */,
@@ -508,7 +365,6 @@
 		0A0594D223043CC100E71A60 /* SingleGatekeeperRepository */ = {
 			isa = PBXGroup;
 			children = (
-				0A0594D523043CC100E71A60 /* DBSingleGatekeeperRepository.swift */,
 				0A0594D623043CC100E71A60 /* InMemoryGatekeeperRepository.swift */,
 			);
 			path = SingleGatekeeperRepository;
@@ -517,7 +373,6 @@
 		0A0594D723043CC100E71A60 /* SingleUserRepository */ = {
 			isa = PBXGroup;
 			children = (
-				0A0594DB23043CC100E71A60 /* DBSingleUserRepository.swift */,
 				0A0594DC23043CC100E71A60 /* InMemoryUserRepository.swift */,
 			);
 			path = SingleUserRepository;
@@ -596,45 +451,10 @@
 			path = Interfaces;
 			sourceTree = "<group>";
 		};
-		0A57F6DE207E38D900AF407D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0AC33F152119C852009A5CFB /* CommonCrypto.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		0AB0B581216392A600FB2435 /* config */ = {
-			isa = PBXGroup;
-			children = (
-				0AB0B56A216388EE00FB2435 /* TestDependencies.xcfilelist */,
-				0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */,
-				0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */,
-			);
-			name = config;
-			sourceTree = "<group>";
-		};
-		0ADFDD8920A0615600423554 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				0A934D6B20B714F900F15616 /* CommonIntegration.app */,
-				0ADFDD8F20A0615600423554 /* Common.framework */,
-				0ADFDD9120A0615600423554 /* CommonTests.xctest */,
-				0ADFDD9320A0615600423554 /* CommonTestSupport.framework */,
-				0A160BA020A0801A00E064E1 /* Database.framework */,
-				0AEF8A3420A08182006A1265 /* DatabaseTests.xctest */,
-				0A8E3BB420B41AB100F002F6 /* CommonImplementations.framework */,
-				0A8E3BB620B41AB100F002F6 /* CommonImplementationsTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		0AF2818E2074C18B00D3843D = {
 			isa = PBXGroup;
 			children = (
-				0AB0B581216392A600FB2435 /* config */,
-				0ADFDD8820A0615600423554 /* Common.xcodeproj */,
-				0A57F6DD207E38D900AF407D /* Library.xcodeproj */,
+				5570EEFC2423B15200576CA0 /* Common.swift */,
 				0A05946623043B7F00E71A60 /* IdentityAccessDomainModel */,
 				0A05947123043B8000E71A60 /* IdentityAccessDomainModelTests */,
 				0A05948623043B9100E71A60 /* IdentityAccessImplementations */,
@@ -642,7 +462,6 @@
 				0A0594A623043B9E00E71A60 /* IdentityAccessApplication */,
 				0A0594B123043B9E00E71A60 /* IdentityAccessApplicationTests */,
 				0AF281982074C18B00D3843D /* Products */,
-				0AF281D32074C21B00D3843D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -657,22 +476,6 @@
 				0A0594AD23043B9E00E71A60 /* IdentityAccessApplicationTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		0AF281D32074C21B00D3843D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0A5DC588209CA25200BA7A06 /* libCommon.a */,
-				0A5DC586209CA24C00BA7A06 /* libCommon.a */,
-				0A5DC584209CA24600BA7A06 /* libCommon.a */,
-				0A5DC582209CA23F00BA7A06 /* libCommon.a */,
-				0A537C09207CFC1C00921FB9 /* libCommonTestSupport.a */,
-				0A537BEA207CFAF800921FB9 /* libCommon.a */,
-				0A537AEE207CF18B00921FB9 /* libCommonTestSupport.a */,
-				0A537AEC207CF10000921FB9 /* libCommonTestSupport.a */,
-				0A537AEA207CF0F900921FB9 /* libCommon.a */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -718,7 +521,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				0A0595352304496900E71A60 /* PBXTargetDependency */,
 			);
 			name = IdentityAccessDomainModel;
 			productName = IdentityAccessDomainModel;
@@ -732,7 +534,6 @@
 				0A05946923043B8000E71A60 /* Sources */,
 				0A05946A23043B8000E71A60 /* Frameworks */,
 				0A05946B23043B8000E71A60 /* Resources */,
-				0AAE7C2623044F3E00E7EB07 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -759,10 +560,6 @@
 			dependencies = (
 				0AAE7C0B23044E0E00E7EB07 /* PBXTargetDependency */,
 				0AAE7C0D23044E0E00E7EB07 /* PBXTargetDependency */,
-				0AAE7C0F23044E0E00E7EB07 /* PBXTargetDependency */,
-				0AAE7C1123044E0E00E7EB07 /* PBXTargetDependency */,
-				0AAE7C1323044E0E00E7EB07 /* PBXTargetDependency */,
-				0AAE7C1523044E0E00E7EB07 /* PBXTargetDependency */,
 			);
 			name = IdentityAccessImplementations;
 			productName = IdentityAccessImplementations;
@@ -776,7 +573,6 @@
 				0A05948923043B9100E71A60 /* Sources */,
 				0A05948A23043B9100E71A60 /* Frameworks */,
 				0A05948B23043B9100E71A60 /* Resources */,
-				0AAE7C2523044F2800E7EB07 /* Embed 3rd Party Frameworks */,
 			);
 			buildRules = (
 			);
@@ -801,7 +597,6 @@
 			);
 			dependencies = (
 				0AAE7C0523044A0100E7EB07 /* PBXTargetDependency */,
-				0AAE7BFB230449FC00E7EB07 /* PBXTargetDependency */,
 			);
 			name = IdentityAccessApplication;
 			productName = IdentityAccessApplication;
@@ -815,7 +610,6 @@
 				0A0594A923043B9E00E71A60 /* Sources */,
 				0A0594AA23043B9E00E71A60 /* Frameworks */,
 				0A0594AB23043B9E00E71A60 /* Resources */,
-				0AAE7C2423044F0D00E7EB07 /* Embed 3rd Party Frameworks */,
 			);
 			buildRules = (
 			);
@@ -871,16 +665,6 @@
 			mainGroup = 0AF2818E2074C18B00D3843D;
 			productRefGroup = 0AF281982074C18B00D3843D /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 0ADFDD8920A0615600423554 /* Products */;
-					ProjectRef = 0ADFDD8820A0615600423554 /* Common.xcodeproj */;
-				},
-				{
-					ProductGroup = 0A57F6DE207E38D900AF407D /* Products */;
-					ProjectRef = 0A57F6DD207E38D900AF407D /* Library.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				0A05946423043B7F00E71A60 /* IdentityAccessDomainModel */,
@@ -892,72 +676,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		0A160BA020A0801A00E064E1 /* Database.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Database.framework;
-			remoteRef = 0A160B9F20A0801A00E064E1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A8E3BB420B41AB100F002F6 /* CommonImplementations.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CommonImplementations.framework;
-			remoteRef = 0A8E3BB320B41AB100F002F6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A8E3BB620B41AB100F002F6 /* CommonImplementationsTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = CommonImplementationsTests.xctest;
-			remoteRef = 0A8E3BB520B41AB100F002F6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0A934D6B20B714F900F15616 /* CommonIntegration.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = CommonIntegration.app;
-			remoteRef = 0A934D6A20B714F900F15616 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0AC33F152119C852009A5CFB /* CommonCrypto.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CommonCrypto.framework;
-			remoteRef = 0AC33F142119C852009A5CFB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0ADFDD8F20A0615600423554 /* Common.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Common.framework;
-			remoteRef = 0ADFDD8E20A0615600423554 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0ADFDD9120A0615600423554 /* CommonTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = CommonTests.xctest;
-			remoteRef = 0ADFDD9020A0615600423554 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0ADFDD9320A0615600423554 /* CommonTestSupport.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CommonTestSupport.framework;
-			remoteRef = 0ADFDD9220A0615600423554 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		0AEF8A3420A08182006A1265 /* DatabaseTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = DatabaseTests.xctest;
-			remoteRef = 0AEF8A3320A08182006A1265 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0A05946323043B7F00E71A60 /* Resources */ = {
@@ -1008,65 +726,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		0AAE7C2423044F0D00E7EB07 /* Embed 3rd Party Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"$(SRCROOT)/TestDependencies.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "Embed 3rd Party Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${SRCROOT}/../scripts/xcode_embed_frameworks.sh\n";
-		};
-		0AAE7C2523044F2800E7EB07 /* Embed 3rd Party Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"$(SRCROOT)/TestDependencies.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "Embed 3rd Party Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${SRCROOT}/../scripts/xcode_embed_frameworks.sh\n";
-		};
-		0AAE7C2623044F3E00E7EB07 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"$(SRCROOT)/TestDependencies.xcfilelist",
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${SRCROOT}/../scripts/xcode_embed_frameworks.sh\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		0A05946123043B7F00E71A60 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1076,6 +735,7 @@
 				0A05951F2304492700E71A60 /* DomainRegistry.swift in Sources */,
 				0A05951B2304492700E71A60 /* SingleUserRepository.swift in Sources */,
 				0A0595252304492700E71A60 /* SingleGatekeeperRepository.swift in Sources */,
+				5570EEFD2423B15200576CA0 /* Common.swift in Sources */,
 				0A0595222304492700E71A60 /* BiometricAuthenticationService.swift in Sources */,
 				0A0595262304492700E71A60 /* Gatekeeper.swift in Sources */,
 				0A0595232304492700E71A60 /* AuthenticationPolicy.swift in Sources */,
@@ -1106,13 +766,12 @@
 			files = (
 				0A0594E823043CC200E71A60 /* SystemClockService.swift in Sources */,
 				0A0594F223043CC200E71A60 /* InMemoryUserRepository.swift in Sources */,
-				0A0594EC23043CC200E71A60 /* DBSingleGatekeeperRepository.swift in Sources */,
 				0A0594F623043CC200E71A60 /* BiometricService.swift in Sources */,
+				5570EEFE2423B30000576CA0 /* Common.swift in Sources */,
 				0A0594E923043CC200E71A60 /* LocalizedString.swift in Sources */,
 				0A0594F823043CC200E71A60 /* CommonCryptoEncryptionService.swift in Sources */,
 				0AAE7C0923044DDF00E7EB07 /* MockClockService.swift in Sources */,
 				0A0594F723043CC200E71A60 /* MockBiometricService.swift in Sources */,
-				0A0594F123043CC200E71A60 /* DBSingleUserRepository.swift in Sources */,
 				0A0594F923043CC200E71A60 /* MockEncryptionService.swift in Sources */,
 				0A0594ED23043CC200E71A60 /* InMemoryGatekeeperRepository.swift in Sources */,
 			);
@@ -1123,14 +782,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A05950523043D4300E71A60 /* BiometricServiceTests.swift in Sources */,
-				0AAE7C1723044E2700E7EB07 /* DBSingleGatekeeperRepositoryIntegrationTests.swift in Sources */,
-				0AAE7C1923044E2F00E7EB07 /* DBSingleUserRepositoryTests.swift in Sources */,
 				0AAE7C1823044E2F00E7EB07 /* InMemoryUserRepositoryTests.swift in Sources */,
 				0A05950423043D4300E71A60 /* SystemClockServiceIntegrationTests.swift in Sources */,
 				0A05950623043D4300E71A60 /* EncryptionServiceTests.swift in Sources */,
-				0AAE7C1A23044E2F00E7EB07 /* DBSingleUserRepositoryIntegrationTests.swift in Sources */,
 				0A05949323043B9100E71A60 /* IdentityAccessImplementationsTests.swift in Sources */,
 				0AAE7C1623044E2500E7EB07 /* InMemoryGatekeeperRepositoryTests.swift in Sources */,
+				5570EF002423B73400576CA0 /* Common.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1138,6 +795,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5570EEFF2423B30100576CA0 /* Common.swift in Sources */,
 				0AAE7C2223044E8B00E7EB07 /* Clock.swift in Sources */,
 				0AAE7C2123044E8B00E7EB07 /* AuthenticationResult.swift in Sources */,
 				0AAE7C1E23044E8B00E7EB07 /* AuthenticationApplicationService.swift in Sources */,
@@ -1177,20 +835,10 @@
 			target = 0A0594A423043B9D00E71A60 /* IdentityAccessApplication */;
 			targetProxy = 0A0594AF23043B9E00E71A60 /* PBXContainerItemProxy */;
 		};
-		0A0595352304496900E71A60 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Common;
-			targetProxy = 0A0595342304496900E71A60 /* PBXContainerItemProxy */;
-		};
 		0A84C2D22305483C0006DA50 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0A05948423043B9100E71A60 /* IdentityAccessImplementations */;
 			targetProxy = 0A84C2D12305483C0006DA50 /* PBXContainerItemProxy */;
-		};
-		0AAE7BFB230449FC00E7EB07 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Common;
-			targetProxy = 0AAE7BFA230449FC00E7EB07 /* PBXContainerItemProxy */;
 		};
 		0AAE7C0523044A0100E7EB07 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1206,26 +854,6 @@
 			isa = PBXTargetDependency;
 			target = 0A05946423043B7F00E71A60 /* IdentityAccessDomainModel */;
 			targetProxy = 0AAE7C0C23044E0E00E7EB07 /* PBXContainerItemProxy */;
-		};
-		0AAE7C0F23044E0E00E7EB07 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Common;
-			targetProxy = 0AAE7C0E23044E0E00E7EB07 /* PBXContainerItemProxy */;
-		};
-		0AAE7C1123044E0E00E7EB07 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CommonImplementations;
-			targetProxy = 0AAE7C1023044E0E00E7EB07 /* PBXContainerItemProxy */;
-		};
-		0AAE7C1323044E0E00E7EB07 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Database;
-			targetProxy = 0AAE7C1223044E0E00E7EB07 /* PBXContainerItemProxy */;
-		};
-		0AAE7C1523044E0E00E7EB07 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CommonCrypto;
-			targetProxy = 0AAE7C1423044E0E00E7EB07 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1370,7 +998,6 @@
 		};
 		0A05947C23043B8000E71A60 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1392,7 +1019,6 @@
 		};
 		0A05947D23043B8000E71A60 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1413,7 +1039,6 @@
 		};
 		0A05947E23043B8000E71A60 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1434,7 +1059,6 @@
 		};
 		0A05947F23043B8000E71A60 /* PreRelease */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1582,7 +1206,6 @@
 		};
 		0A05949C23043B9100E71A60 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1604,7 +1227,6 @@
 		};
 		0A05949D23043B9100E71A60 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1625,7 +1247,6 @@
 		};
 		0A05949E23043B9100E71A60 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1646,7 +1267,6 @@
 		};
 		0A05949F23043B9100E71A60 /* PreRelease */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1794,7 +1414,6 @@
 		};
 		0A0594BC23043B9E00E71A60 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1816,7 +1435,6 @@
 		};
 		0A0594BD23043B9E00E71A60 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1837,7 +1455,6 @@
 		};
 		0A0594BE23043B9E00E71A60 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1858,7 +1475,6 @@
 		};
 		0A0594BF23043B9E00E71A60 /* PreRelease */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A537B3A207CF70D00921FB9 /* ImplementationsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1879,7 +1495,6 @@
 		};
 		0A0920B12180C69C00C5A503 /* PreRelease */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1936,7 +1551,6 @@
 		};
 		0A46702B207E58B700F55ADE /* AdHoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1998,7 +1612,6 @@
 		};
 		0AF2819C2074C18B00D3843D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2061,7 +1674,6 @@
 		};
 		0AF2819D2074C18B00D3843D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A5DC581209CA19800BA7A06 /* CommonConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

@@ -5,7 +5,11 @@
 import XCTest
 @testable import IdentityAccessImplementations
 import IdentityAccessDomainModel
-import CommonTestSupport
+
+func delay(_ delay: TimeInterval = 0.1) {
+    if delay == 0 { return }
+    RunLoop.current.run(until: Date(timeIntervalSinceNow: delay))
+}
 
 class SystemClockServiceIntegrationTests: XCTestCase {
 

@@ -3,7 +3,6 @@
 //
 
 import Foundation
-import Common
 
 public class SessionID: BaseID {}
 

@@ -3,7 +3,6 @@
 //
 
 import Foundation
-import Common
 import IdentityAccessDomainModel
 
 /// The registry implements a Service Locator pattern to allow for dependency injection.

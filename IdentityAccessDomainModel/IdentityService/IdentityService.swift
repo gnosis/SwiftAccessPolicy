@@ -3,7 +3,6 @@
 //
 
 import Foundation
-import Common
 
 /// Domain service that handles registration and authentication tasks.
 public class IdentityService: Assertable {

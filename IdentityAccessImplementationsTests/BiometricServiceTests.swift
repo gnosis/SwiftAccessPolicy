@@ -7,7 +7,6 @@ import LocalAuthentication
 @testable import IdentityAccessImplementations
 import IdentityAccessDomainModel
 import IdentityAccessApplication
-import Common
 
 class BiometricAuthenticationServiceTests: XCTestCase {
 

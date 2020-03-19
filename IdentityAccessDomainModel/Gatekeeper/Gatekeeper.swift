@@ -3,7 +3,6 @@
 //
 
 import Foundation
-import Common
 
 /// ID of a gatekeeper entity
 public class GatekeeperID: BaseID {}
