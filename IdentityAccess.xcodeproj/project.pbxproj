@@ -65,10 +65,14 @@
 		0AAE7C2A23044FCB00E7EB07 /* AuthenticationApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7C2723044FCB00E7EB07 /* AuthenticationApplicationServiceTests.swift */; };
 		0AAE7C2B23044FCB00E7EB07 /* ApplicationServiceRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7C2823044FCB00E7EB07 /* ApplicationServiceRegistryTests.swift */; };
 		0AAE7C2C23044FCB00E7EB07 /* ApplicationServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7C2923044FCB00E7EB07 /* ApplicationServiceTestCase.swift */; };
-		5570EEFD2423B15200576CA0 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EEFC2423B15200576CA0 /* Common.swift */; };
-		5570EEFE2423B30000576CA0 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EEFC2423B15200576CA0 /* Common.swift */; };
-		5570EEFF2423B30100576CA0 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EEFC2423B15200576CA0 /* Common.swift */; };
-		5570EF002423B73400576CA0 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EEFC2423B15200576CA0 /* Common.swift */; };
+		5570EF5A242A20B600576CA0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EF53242A20B600576CA0 /* Logger.swift */; };
+		5570EF5B242A20B600576CA0 /* MockLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EF54242A20B600576CA0 /* MockLogger.swift */; };
+		5570EF5C242A20B600576CA0 /* LoggableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EF55242A20B600576CA0 /* LoggableError.swift */; };
+		5570EF5D242A20B600576CA0 /* Assertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EF56242A20B600576CA0 /* Assertable.swift */; };
+		5570EF5E242A20B600576CA0 /* BaseID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EF57242A20B600576CA0 /* BaseID.swift */; };
+		5570EF5F242A20B600576CA0 /* AbstractRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EF58242A20B600576CA0 /* AbstractRegistry.swift */; };
+		5570EF60242A20B600576CA0 /* IdentifiableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EF59242A20B600576CA0 /* IdentifiableEntity.swift */; };
+		5570EF6D242A217F00576CA0 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EF6C242A217F00576CA0 /* FoundationExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -194,7 +198,14 @@
 		0AAE7C2D23044FFB00E7EB07 /* IdentityAccessDomainModel.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = IdentityAccessDomainModel.xctestplan; sourceTree = "<group>"; };
 		0AAE7C2E2304500D00E7EB07 /* IdentityAccessImplementations.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = IdentityAccessImplementations.xctestplan; sourceTree = "<group>"; };
 		0AAE7C2F2304501A00E7EB07 /* IdentityAccessApplication.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = IdentityAccessApplication.xctestplan; sourceTree = "<group>"; };
-		5570EEFC2423B15200576CA0 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		5570EF53242A20B600576CA0 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		5570EF54242A20B600576CA0 /* MockLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockLogger.swift; sourceTree = "<group>"; };
+		5570EF55242A20B600576CA0 /* LoggableError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggableError.swift; sourceTree = "<group>"; };
+		5570EF56242A20B600576CA0 /* Assertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assertable.swift; sourceTree = "<group>"; };
+		5570EF57242A20B600576CA0 /* BaseID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseID.swift; sourceTree = "<group>"; };
+		5570EF58242A20B600576CA0 /* AbstractRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRegistry.swift; sourceTree = "<group>"; };
+		5570EF59242A20B600576CA0 /* IdentifiableEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifiableEntity.swift; sourceTree = "<group>"; };
+		5570EF6C242A217F00576CA0 /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,7 +465,7 @@
 		0AF2818E2074C18B00D3843D = {
 			isa = PBXGroup;
 			children = (
-				5570EEFC2423B15200576CA0 /* Common.swift */,
+				5570EF51242A20B600576CA0 /* Common */,
 				0A05946623043B7F00E71A60 /* IdentityAccessDomainModel */,
 				0A05947123043B8000E71A60 /* IdentityAccessDomainModelTests */,
 				0A05948623043B9100E71A60 /* IdentityAccessImplementations */,
@@ -476,6 +487,29 @@
 				0A0594AD23043B9E00E71A60 /* IdentityAccessApplicationTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5570EF51242A20B600576CA0 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5570EF52242A20B600576CA0 /* Logger */,
+				5570EF56242A20B600576CA0 /* Assertable.swift */,
+				5570EF57242A20B600576CA0 /* BaseID.swift */,
+				5570EF58242A20B600576CA0 /* AbstractRegistry.swift */,
+				5570EF59242A20B600576CA0 /* IdentifiableEntity.swift */,
+				5570EF6C242A217F00576CA0 /* FoundationExtensions.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		5570EF52242A20B600576CA0 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				5570EF53242A20B600576CA0 /* Logger.swift */,
+				5570EF54242A20B600576CA0 /* MockLogger.swift */,
+				5570EF55242A20B600576CA0 /* LoggableError.swift */,
+			);
+			path = Logger;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -732,15 +766,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A0595212304492700E71A60 /* IdentityService.swift in Sources */,
+				5570EF5B242A20B600576CA0 /* MockLogger.swift in Sources */,
+				5570EF5A242A20B600576CA0 /* Logger.swift in Sources */,
 				0A05951F2304492700E71A60 /* DomainRegistry.swift in Sources */,
 				0A05951B2304492700E71A60 /* SingleUserRepository.swift in Sources */,
 				0A0595252304492700E71A60 /* SingleGatekeeperRepository.swift in Sources */,
-				5570EEFD2423B15200576CA0 /* Common.swift in Sources */,
 				0A0595222304492700E71A60 /* BiometricAuthenticationService.swift in Sources */,
+				5570EF5C242A20B600576CA0 /* LoggableError.swift in Sources */,
+				5570EF6D242A217F00576CA0 /* FoundationExtensions.swift in Sources */,
+				5570EF5E242A20B600576CA0 /* BaseID.swift in Sources */,
 				0A0595262304492700E71A60 /* Gatekeeper.swift in Sources */,
+				5570EF5D242A20B600576CA0 /* Assertable.swift in Sources */,
+				5570EF60242A20B600576CA0 /* IdentifiableEntity.swift in Sources */,
 				0A0595232304492700E71A60 /* AuthenticationPolicy.swift in Sources */,
 				0A05951A2304492700E71A60 /* EncryptionService.swift in Sources */,
 				0A05951C2304492700E71A60 /* User.swift in Sources */,
+				5570EF5F242A20B600576CA0 /* AbstractRegistry.swift in Sources */,
 				0A0595242304492700E71A60 /* Session.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -767,7 +808,6 @@
 				0A0594E823043CC200E71A60 /* SystemClockService.swift in Sources */,
 				0A0594F223043CC200E71A60 /* InMemoryUserRepository.swift in Sources */,
 				0A0594F623043CC200E71A60 /* BiometricService.swift in Sources */,
-				5570EEFE2423B30000576CA0 /* Common.swift in Sources */,
 				0A0594E923043CC200E71A60 /* LocalizedString.swift in Sources */,
 				0A0594F823043CC200E71A60 /* CommonCryptoEncryptionService.swift in Sources */,
 				0AAE7C0923044DDF00E7EB07 /* MockClockService.swift in Sources */,
@@ -787,7 +827,6 @@
 				0A05950623043D4300E71A60 /* EncryptionServiceTests.swift in Sources */,
 				0A05949323043B9100E71A60 /* IdentityAccessImplementationsTests.swift in Sources */,
 				0AAE7C1623044E2500E7EB07 /* InMemoryGatekeeperRepositoryTests.swift in Sources */,
-				5570EF002423B73400576CA0 /* Common.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -795,7 +834,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5570EEFF2423B30100576CA0 /* Common.swift in Sources */,
 				0AAE7C2223044E8B00E7EB07 /* Clock.swift in Sources */,
 				0AAE7C2123044E8B00E7EB07 /* AuthenticationResult.swift in Sources */,
 				0AAE7C1E23044E8B00E7EB07 /* AuthenticationApplicationService.swift in Sources */,
