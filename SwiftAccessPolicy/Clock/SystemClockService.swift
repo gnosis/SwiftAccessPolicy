@@ -6,7 +6,7 @@ import Foundation
 import IdentityAccessApplication
 
 /// Implementation of a Clock interface with actual system Timer.
-public final class SystemClockService: Clock {
+public final class SystemClockService: ClockService {
 
     public init() {}
 
