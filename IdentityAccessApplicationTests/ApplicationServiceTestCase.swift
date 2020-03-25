@@ -25,7 +25,7 @@ class ApplicationServiceTestCase: XCTestCase {
     }
 
     private func configureIdentityServiceDependencies() {
-        ApplicationServiceRegistry.put(service: clockService, for: Clock.self)
+        ApplicationServiceRegistry.put(service: clockService, for: ClockService.self)
     }
 
     private func configureAuthenticationServiceDependencies() {
@@ -36,7 +36,7 @@ class ApplicationServiceTestCase: XCTestCase {
         DomainRegistry.put(service: encryptionService, for: EncryptionService.self)
         DomainRegistry.put(service: identityDomainService, for: IdentityService.self)
         DomainRegistry.put(service: gatekeeperRepository, for: SingleGatekeeperRepository.self)
-        DomainRegistry.put(service: clockService, for: Clock.self)
+        DomainRegistry.put(service: clockService, for: ClockService.self)
 
         XCTAssertNoThrow(try DomainRegistry.identityService.createGatekeeper(sessionDuration: 2,
                                                                              maxFailedAttempts: 2,

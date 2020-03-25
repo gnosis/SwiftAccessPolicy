@@ -6,7 +6,7 @@ import Foundation
 import IdentityAccessApplication
 
 /// Mock Clock implementation for testing purposes.
-open class MockClockService: Clock {
+open class MockClockService: ClockService {
 
     open var currentTime = Date()
     open var countdownTickBlock: ((TimeInterval) -> Void)?

@@ -82,7 +82,7 @@ public class AccessService {
 
     // MARK: - Authentication
 
-//    func isAuthMethodSupported(_ method: AuthMethod) -> Bool {
-//        
-//    }
+    func isAuthMethodSupported(_ method: AuthMethod) -> Bool {
+        return false
+    }
 }

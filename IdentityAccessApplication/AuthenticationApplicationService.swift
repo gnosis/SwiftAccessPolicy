@@ -13,7 +13,7 @@ open class AuthenticationApplicationService {
     }
 
     private var gatekeeperRepository: SingleGatekeeperRepository { return DomainRegistry.gatekeeperRepository }
-    private var clock: Clock { return ApplicationServiceRegistry.clock }
+    private var clock: ClockService { return ApplicationServiceRegistry.clock }
     private var identityService: IdentityService { return DomainRegistry.identityService }
     private var userRepository: SingleUserRepository { return DomainRegistry.userRepository }
     private var biometricService: BiometricAuthenticationService {
@@ -69,8 +69,8 @@ open class AuthenticationApplicationService {
     ///
     /// - Parameter method: The authentication type
     /// - Returns: True if the authentication `method` is supported.
-    open func isAuthenticationMethodSupported(_ method: AuthenticationMethod) -> Bool {
-        var supportedSet: AuthenticationMethod = .password
+    open func isAuthenticationMethodSupported(_ method: AuthMethod) -> Bool {
+        var supportedSet: AuthMethod = .password
         if biometricService.biometryType == .touchID {
             supportedSet.insert(.touchID)
         }
@@ -86,9 +86,9 @@ open class AuthenticationApplicationService {
     ///
     /// - Parameter method: The authentication type
     /// - Returns: True if the authentication `method` can succeed.
-    open func isAuthenticationMethodPossible(_ method: AuthenticationMethod) -> Bool {
+    open func isAuthenticationMethodPossible(_ method: AuthMethod) -> Bool {
         guard isAccessPossible else { return false }
-        var possibleSet: AuthenticationMethod = .password
+        var possibleSet: AuthMethod = .password
         if isAuthenticationMethodSupported(.faceID) && biometricService.isAuthenticationAvailable {
             possibleSet.insert(.faceID)
         }
@@ -110,7 +110,7 @@ open class AuthenticationApplicationService {
         let user: UserID?
         if request.method == .password {
             user = try identityService.authenticateUser(password: request.password, at: time)
-        } else if AuthenticationMethod.biometry.contains(request.method) {
+        } else if AuthMethod.biometry.contains(request.method) {
             user = try identityService.authenticateUserBiometrically(at: time)
         } else {
             preconditionFailure("Invalid authentication method in request \(request)")

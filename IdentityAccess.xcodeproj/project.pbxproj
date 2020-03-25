@@ -57,7 +57,7 @@
 		0AAE7C1823044E2F00E7EB07 /* InMemoryUserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594D923043CC100E71A60 /* InMemoryUserRepositoryTests.swift */; };
 		0AAE7C1D23044E8B00E7EB07 /* ApplicationServiceRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059539230449DC00E71A60 /* ApplicationServiceRegistry.swift */; };
 		0AAE7C1E23044E8B00E7EB07 /* AuthenticationApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05953D230449DC00E71A60 /* AuthenticationApplicationService.swift */; };
-		0AAE7C1F23044E8B00E7EB07 /* AuthenticationMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05953A230449DC00E71A60 /* AuthenticationMethod.swift */; };
+		0AAE7C1F23044E8B00E7EB07 /* AuthMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05953A230449DC00E71A60 /* AuthMethod.swift */; };
 		0AAE7C2023044E8B00E7EB07 /* AuthenticationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059541230449DC00E71A60 /* AuthenticationRequest.swift */; };
 		0AAE7C2123044E8B00E7EB07 /* AuthenticationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059538230449DC00E71A60 /* AuthenticationResult.swift */; };
 		0AAE7C2323044E8B00E7EB07 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05953B230449DC00E71A60 /* MockAuthenticationService.swift */; };
@@ -85,7 +85,11 @@
 		559C710B242B47A50070BEE0 /* MockClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594CE23043CC100E71A60 /* MockClockService.swift */; };
 		559C710C242B47F90070BEE0 /* ClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059543230449DC00E71A60 /* ClockService.swift */; };
 		559C710D242B47FC0070BEE0 /* ClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059543230449DC00E71A60 /* ClockService.swift */; };
-		55E130DF242B5C7F0062247D /* AuthenticationMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05953A230449DC00E71A60 /* AuthenticationMethod.swift */; };
+		55E130DF242B5C7F0062247D /* AuthMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05953A230449DC00E71A60 /* AuthMethod.swift */; };
+		55E130E0242B5DF00062247D /* ClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059543230449DC00E71A60 /* ClockService.swift */; };
+		55E130E4242B5EAE0062247D /* ClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059543230449DC00E71A60 /* ClockService.swift */; };
+		55E130E5242B5ED40062247D /* MockClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594CE23043CC100E71A60 /* MockClockService.swift */; };
+		55E130E6242B5F110062247D /* MockClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594CE23043CC100E71A60 /* MockClockService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -204,7 +208,7 @@
 		0A05952C2304493200E71A60 /* DomainRegistryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainRegistryTests.swift; sourceTree = "<group>"; };
 		0A059538230449DC00E71A60 /* AuthenticationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResult.swift; sourceTree = "<group>"; };
 		0A059539230449DC00E71A60 /* ApplicationServiceRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationServiceRegistry.swift; sourceTree = "<group>"; };
-		0A05953A230449DC00E71A60 /* AuthenticationMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationMethod.swift; sourceTree = "<group>"; };
+		0A05953A230449DC00E71A60 /* AuthMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthMethod.swift; sourceTree = "<group>"; };
 		0A05953B230449DC00E71A60 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
 		0A05953C230449DC00E71A60 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0A05953D230449DC00E71A60 /* AuthenticationApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationApplicationService.swift; sourceTree = "<group>"; };
@@ -598,7 +602,7 @@
 		55E130DE242B5C010062247D /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				0A05953A230449DC00E71A60 /* AuthenticationMethod.swift */,
+				0A05953A230449DC00E71A60 /* AuthMethod.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -940,6 +944,7 @@
 				0A05951A2304492700E71A60 /* EncryptionService.swift in Sources */,
 				0A05951C2304492700E71A60 /* User.swift in Sources */,
 				5570EF5F242A20B600576CA0 /* AbstractRegistry.swift in Sources */,
+				55E130E4242B5EAE0062247D /* ClockService.swift in Sources */,
 				0A0595242304492700E71A60 /* Session.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -993,11 +998,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E130E5242B5ED40062247D /* MockClockService.swift in Sources */,
+				55E130E0242B5DF00062247D /* ClockService.swift in Sources */,
 				0AAE7C2123044E8B00E7EB07 /* AuthenticationResult.swift in Sources */,
 				0AAE7C1E23044E8B00E7EB07 /* AuthenticationApplicationService.swift in Sources */,
 				0AAE7C2323044E8B00E7EB07 /* MockAuthenticationService.swift in Sources */,
 				0AAE7C1D23044E8B00E7EB07 /* ApplicationServiceRegistry.swift in Sources */,
-				0AAE7C1F23044E8B00E7EB07 /* AuthenticationMethod.swift in Sources */,
+				0AAE7C1F23044E8B00E7EB07 /* AuthMethod.swift in Sources */,
 				0AAE7C2023044E8B00E7EB07 /* AuthenticationRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1007,6 +1014,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AAE7C2C23044FCB00E7EB07 /* ApplicationServiceTestCase.swift in Sources */,
+				55E130E6242B5F110062247D /* MockClockService.swift in Sources */,
 				0AAE7C2A23044FCB00E7EB07 /* AuthenticationApplicationServiceTests.swift in Sources */,
 				0AAE7C2B23044FCB00E7EB07 /* ApplicationServiceRegistryTests.swift in Sources */,
 				0A0594B323043B9E00E71A60 /* IdentityAccessApplicationTests.swift in Sources */,
@@ -1021,7 +1029,7 @@
 				559C70FE242B405C0070BEE0 /* AccessService.swift in Sources */,
 				559C7100242B408D0070BEE0 /* AuthStatus.swift in Sources */,
 				559C710C242B47F90070BEE0 /* ClockService.swift in Sources */,
-				55E130DF242B5C7F0062247D /* AuthenticationMethod.swift in Sources */,
+				55E130DF242B5C7F0062247D /* AuthMethod.swift in Sources */,
 				559C7109242B443C0070BEE0 /* InMemoryUserRepository.swift in Sources */,
 				559C7105242B42540070BEE0 /* UserRepository.swift in Sources */,
 				559C7107242B42C70070BEE0 /* User.swift in Sources */,

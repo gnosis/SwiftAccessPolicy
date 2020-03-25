@@ -8,11 +8,11 @@ import Foundation
 public struct AuthenticationRequest {
 
     /// Method to authenticate with
-    public let method: AuthenticationMethod
+    public let method: AuthMethod
     /// If method is `password` authentication, then this has the password in plain text
     public let password: String!
 
-    private init(with method: AuthenticationMethod, _ password: String? = nil) {
+    private init(with method: AuthMethod, _ password: String? = nil) {
         precondition(method == .biometry && password == nil ||
             method == .password && password != nil, "Invalid authentication request")
         self.method = method
