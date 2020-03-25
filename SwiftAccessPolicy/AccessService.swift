@@ -17,6 +17,7 @@ public class AccessService {
     private var accessPolicy: AccessPolicy
     private var userRepository: UserRepository
     private var clockService: ClockService
+    private var biometryService: BiometryService
 
     enum AccessServiceError: Error {
         case userAlreadyExists
@@ -24,25 +25,30 @@ public class AccessService {
         case couldNotEncodeStringToUTF8Data
     }
 
-    public init(accessPolicy: AccessPolicy,
-                userRepository: UserRepository?,
-                clockService: ClockService?) {
+    public init(accessPolicy: AccessPolicy, biometryReason: BiometryReason) {
         self.accessPolicy = accessPolicy
-        if let userRepository = userRepository {
-            self.userRepository = userRepository
-        } else {
-            self.userRepository = InMemotyUserRepository()
-        }
-        if let clockService = clockService {
-            self.clockService = clockService
-        } else {
-            self.clockService = SystemClockService()
-        }
+        self.userRepository = InMemotyUserRepository()
+        self.clockService = SystemClockService()
+        self.biometryService = SystemBiometryService(biometryReason: biometryReason)
+    }
+
+    // MARK: - Services
+
+    public func setUserRepository(_ userRepository: UserRepository) {
+        self.userRepository = userRepository
+    }
+
+    public func setClockService(_ clockService: ClockService) {
+        self.clockService = clockService
+    }
+
+    public func setBiometryService(_ biometryService: BiometryService) {
+        self.biometryService = biometryService
     }
 
     // MARK: - Users management
 
-    func registerUser(userID: UUID = UUID(), password: String) throws {
+    public func registerUser(userID: UUID = UUID(), password: String) throws {
         guard userRepository.user(userID: userID) == nil else {
             throw AccessServiceError.userAlreadyExists
         }
@@ -50,18 +56,18 @@ public class AccessService {
         userRepository.save(user: user)
     }
 
-    func deleteUser(userID: UUID) throws {
+    public func deleteUser(userID: UUID) throws {
         guard userRepository.user(userID: userID) != nil else {
             throw AccessServiceError.userDoesNotExist
         }
         userRepository.delete(userID: userID)
     }
 
-    func users() -> [User] {
+    public func users() -> [User] {
         return userRepository.users()
     }
 
-    func updateUserPassword(userID: UUID, password: String) throws {
+    public func updateUserPassword(userID: UUID, password: String) throws {
         guard var user = userRepository.user(userID: userID) else {
             throw AccessServiceError.userDoesNotExist
         }
@@ -69,7 +75,7 @@ public class AccessService {
         userRepository.save(user: user)
     }
 
-    func verifyPassword(userID: UUID, password: String) throws -> Bool {
+    public func verifyPassword(userID: UUID, password: String) throws -> Bool {
         return false
     }
 
@@ -82,14 +88,14 @@ public class AccessService {
 
     // MARK: - Authentication
 
-//    func isAuthMethodSupported(_ method: AuthMethod) -> Bool {
-//        var supportedSet: AuthMethod = .password
-//        if biometricService.biometryType == .touchID {
-//            supportedSet.insert(.touchID)
-//        }
-//        if biometricService.biometryType == .faceID {
-//            supportedSet.insert(.faceID)
-//        }
-//        return supportedSet.intersects(with: method)
-//    }
+    public func isAuthMethodSupported(_ method: AuthMethod) -> Bool {
+        var supportedSet: AuthMethod = .password
+        if biometryService.biometryType == .touchID {
+            supportedSet.insert(.touchID)
+        }
+        if biometryService.biometryType == .faceID {
+            supportedSet.insert(.faceID)
+        }
+        return supportedSet.intersects(with: method)
+    }
 }

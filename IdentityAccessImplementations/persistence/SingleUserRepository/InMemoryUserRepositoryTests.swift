@@ -16,7 +16,7 @@ class InMemoryUserRepositoryTests: XCTestCase {
         super.setUp()
         DomainRegistry.put(service: MockEncryptionService(), for: EncryptionService.self)
         DomainRegistry.put(service: repository, for: SingleUserRepository.self)
-        DomainRegistry.put(service: MockBiometricService(), for: BiometricAuthenticationService.self)
+        DomainRegistry.put(service: MockBiometryService(), for: BiometryService.self)
         DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
         do {
             _ = try DomainRegistry.identityService.registerUser(password: "Mypass123")

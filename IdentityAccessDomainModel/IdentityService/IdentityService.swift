@@ -45,7 +45,7 @@ public class IdentityService: Assertable {
     private var encryptionService: EncryptionService {
         return DomainRegistry.encryptionService
     }
-    private var biometricService: BiometricAuthenticationService {
+    private var biometricService: BiometryService {
         return DomainRegistry.biometricAuthenticationService
     }
     private var gatekeeperRepository: SingleGatekeeperRepository {

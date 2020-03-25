@@ -12,14 +12,14 @@ class ApplicationServiceTestCase: XCTestCase {
 
     let authenticationService = AuthenticationApplicationService()
     let userRepository: SingleUserRepository = InMemoryUserRepository()
-    let biometricService = MockBiometricService()
+    let biometricService = MockBiometryService()
     let encryptionService = MockEncryptionService()
     let gatekeeperRepository = InMemoryGatekeeperRepository()
     let identityDomainService = IdentityService()
     var clockService = IdentityAccessApplication.MockClockService()
 
     override func setUp() {
-        super.setUp()        
+        super.setUp()
         configureIdentityServiceDependencies()
         configureAuthenticationServiceDependencies()
     }
@@ -32,7 +32,7 @@ class ApplicationServiceTestCase: XCTestCase {
         ApplicationServiceRegistry.put(service: authenticationService,
                                        for: AuthenticationApplicationService.self)
         DomainRegistry.put(service: userRepository, for: SingleUserRepository.self)
-        DomainRegistry.put(service: biometricService, for: BiometricAuthenticationService.self)
+        DomainRegistry.put(service: biometricService, for: BiometryService.self)
         DomainRegistry.put(service: encryptionService, for: EncryptionService.self)
         DomainRegistry.put(service: identityDomainService, for: IdentityService.self)
         DomainRegistry.put(service: gatekeeperRepository, for: SingleGatekeeperRepository.self)

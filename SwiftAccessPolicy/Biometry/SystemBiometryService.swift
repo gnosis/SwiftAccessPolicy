@@ -5,14 +5,6 @@
 import Foundation
 import LocalAuthentication
 
-/// Biometric authentication types
-///
-/// - none: no biometric authentication
-/// - touchID: touch ID
-/// - faceID: face ID
-public enum BiometryType {
-    case none, touchID, faceID
-}
 
 public enum BiometryAuthenticationError: Error {
     case cancelled
@@ -45,7 +37,7 @@ public enum BiometricServiceError: Error {
     case unexpectedBiometryType
 }
 
-public final class BiometricService: BiometricAuthenticationService {
+public final class SystemBiometryService: BiometryService {
 
     private let contextProvider: () -> LAContext
     private var context: LAContext

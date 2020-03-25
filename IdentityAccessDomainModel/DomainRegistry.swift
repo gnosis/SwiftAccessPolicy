@@ -7,8 +7,8 @@ import Foundation
 /// Service locator for domain model services and repositories.
 public class DomainRegistry: AbstractRegistry {
 
-    public static var biometricAuthenticationService: BiometricAuthenticationService {
-        return service(for: BiometricAuthenticationService.self)
+    public static var biometricAuthenticationService: BiometryService {
+        return service(for: BiometryService.self)
     }
 
     public static var encryptionService: EncryptionService {

@@ -10,7 +10,7 @@ import IdentityAccessApplication
 
 class BiometricAuthenticationServiceTests: XCTestCase {
 
-    var biometricService: BiometricAuthenticationService!
+    var biometricService: BiometryService!
     let context = MockLAContext()
 
     override func setUp() {
@@ -21,7 +21,7 @@ class BiometricAuthenticationServiceTests: XCTestCase {
                                             faceIDActivation: "",
                                             faceIDAuth: "",
                                             unrecognizedBiometryType: "")
-        biometricService = BiometricService(biometryReason: biometryReason, localAuthenticationContext: self.context)
+        biometricService = SystemBiometryService(biometryReason: biometryReason, localAuthenticationContext: self.context)
     }
 
     func test_activate_whenBiometricIsNotAvailable_thenIsNotActivated() throws {

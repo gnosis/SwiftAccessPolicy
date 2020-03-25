@@ -16,7 +16,7 @@ open class AuthenticationApplicationService {
     private var clock: ClockService { return ApplicationServiceRegistry.clock }
     private var identityService: IdentityService { return DomainRegistry.identityService }
     private var userRepository: SingleUserRepository { return DomainRegistry.userRepository }
-    private var biometricService: BiometricAuthenticationService {
+    private var biometricService: BiometryService {
         return DomainRegistry.biometricAuthenticationService
     }
     private var isAccessPossible: Bool {

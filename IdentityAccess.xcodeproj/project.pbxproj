@@ -21,7 +21,7 @@
 		0A0594ED23043CC200E71A60 /* InMemoryGatekeeperRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594D623043CC100E71A60 /* InMemoryGatekeeperRepository.swift */; };
 		0A0594F223043CC200E71A60 /* InMemoryUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594DC23043CC100E71A60 /* InMemoryUserRepository.swift */; };
 		0A0594F523043CC200E71A60 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0A0594E023043CC200E71A60 /* README.md */; };
-		0A0594F723043CC200E71A60 /* MockBiometricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594E323043CC200E71A60 /* MockBiometricService.swift */; };
+		0A0594F723043CC200E71A60 /* MockBiometryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594E323043CC200E71A60 /* MockBiometryService.swift */; };
 		0A0594F823043CC200E71A60 /* CommonCryptoEncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594E523043CC200E71A60 /* CommonCryptoEncryptionService.swift */; };
 		0A0594F923043CC200E71A60 /* MockEncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594E623043CC200E71A60 /* MockEncryptionService.swift */; };
 		0A05950023043CFC00E71A60 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0594FE23043CFC00E71A60 /* Localizable.strings */; };
@@ -86,11 +86,11 @@
 		55E130DF242B5C7F0062247D /* AuthMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05953A230449DC00E71A60 /* AuthMethod.swift */; };
 		55E130E0242B5DF00062247D /* ClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059543230449DC00E71A60 /* ClockService.swift */; };
 		55E130E4242B5EAE0062247D /* ClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059543230449DC00E71A60 /* ClockService.swift */; };
-		55E130E7242B60480062247D /* BiometricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594E223043CC200E71A60 /* BiometricService.swift */; };
-		55E130E8242B604F0062247D /* MockBiometricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594E323043CC200E71A60 /* MockBiometricService.swift */; };
-		55E130EC242B6B9E0062247D /* BiometricService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594E223043CC200E71A60 /* BiometricService.swift */; };
-		55E130EE242B6C040062247D /* BiometricAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0595132304492700E71A60 /* BiometricAuthService.swift */; };
-		55E130F0242B6CDF0062247D /* BiometricAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0595132304492700E71A60 /* BiometricAuthService.swift */; };
+		55E130E7242B60480062247D /* SystemBiometryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594E223043CC200E71A60 /* SystemBiometryService.swift */; };
+		55E130E8242B604F0062247D /* MockBiometryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594E323043CC200E71A60 /* MockBiometryService.swift */; };
+		55E130EC242B6B9E0062247D /* SystemBiometryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594E223043CC200E71A60 /* SystemBiometryService.swift */; };
+		55E130EE242B6C040062247D /* BiometryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0595132304492700E71A60 /* BiometryService.swift */; };
+		55E130F0242B6CDF0062247D /* BiometryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0595132304492700E71A60 /* BiometryService.swift */; };
 		55E130F1242B6E210062247D /* MockClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594CE23043CC100E71A60 /* MockClockService.swift */; };
 /* End PBXBuildFile section */
 
@@ -180,8 +180,8 @@
 		0A0594D923043CC100E71A60 /* InMemoryUserRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InMemoryUserRepositoryTests.swift; path = ../IdentityAccessImplementations/persistence/SingleUserRepository/InMemoryUserRepositoryTests.swift; sourceTree = "<group>"; };
 		0A0594DC23043CC100E71A60 /* InMemoryUserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryUserRepository.swift; sourceTree = "<group>"; };
 		0A0594E023043CC200E71A60 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		0A0594E223043CC200E71A60 /* BiometricService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricService.swift; sourceTree = "<group>"; };
-		0A0594E323043CC200E71A60 /* MockBiometricService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockBiometricService.swift; sourceTree = "<group>"; };
+		0A0594E223043CC200E71A60 /* SystemBiometryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemBiometryService.swift; sourceTree = "<group>"; };
+		0A0594E323043CC200E71A60 /* MockBiometryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockBiometryService.swift; sourceTree = "<group>"; };
 		0A0594E523043CC200E71A60 /* CommonCryptoEncryptionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonCryptoEncryptionService.swift; sourceTree = "<group>"; };
 		0A0594E623043CC200E71A60 /* MockEncryptionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockEncryptionService.swift; sourceTree = "<group>"; };
 		0A0594FF23043CFC00E71A60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 		0A05950F2304492600E71A60 /* DomainRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainRegistry.swift; sourceTree = "<group>"; };
 		0A0595102304492600E71A60 /* DomainTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainTestCase.swift; sourceTree = "<group>"; };
 		0A0595122304492700E71A60 /* IdentityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentityService.swift; sourceTree = "<group>"; };
-		0A0595132304492700E71A60 /* BiometricAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricAuthService.swift; sourceTree = "<group>"; };
+		0A0595132304492700E71A60 /* BiometryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometryService.swift; sourceTree = "<group>"; };
 		0A0595152304492700E71A60 /* AuthenticationPolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationPolicy.swift; sourceTree = "<group>"; };
 		0A0595162304492700E71A60 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		0A0595172304492700E71A60 /* SingleGatekeeperRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleGatekeeperRepository.swift; sourceTree = "<group>"; };
@@ -318,7 +318,6 @@
 			children = (
 				0A05950F2304492600E71A60 /* DomainRegistry.swift */,
 				0A0595082304492600E71A60 /* EncryptionService.swift */,
-				0A0595132304492700E71A60 /* BiometricAuthService.swift */,
 				0A0595142304492700E71A60 /* Gatekeeper */,
 				0A0595112304492700E71A60 /* IdentityService */,
 				0A0595072304492600E71A60 /* README.md */,
@@ -444,8 +443,9 @@
 		0A0594E123043CC200E71A60 /* Biometry */ = {
 			isa = PBXGroup;
 			children = (
-				0A0594E223043CC200E71A60 /* BiometricService.swift */,
-				0A0594E323043CC200E71A60 /* MockBiometricService.swift */,
+				0A0595132304492700E71A60 /* BiometryService.swift */,
+				0A0594E223043CC200E71A60 /* SystemBiometryService.swift */,
+				0A0594E323043CC200E71A60 /* MockBiometryService.swift */,
 			);
 			path = Biometry;
 			sourceTree = "<group>";
@@ -939,9 +939,9 @@
 				5570EF6D242A217F00576CA0 /* FoundationExtensions.swift in Sources */,
 				5570EF5E242A20B600576CA0 /* BaseID.swift in Sources */,
 				0A0595262304492700E71A60 /* Gatekeeper.swift in Sources */,
-				55E130EE242B6C040062247D /* BiometricAuthService.swift in Sources */,
+				55E130EE242B6C040062247D /* BiometryService.swift in Sources */,
 				5570EF5D242A20B600576CA0 /* Assertable.swift in Sources */,
-				55E130EC242B6B9E0062247D /* BiometricService.swift in Sources */,
+				55E130EC242B6B9E0062247D /* SystemBiometryService.swift in Sources */,
 				5570EF60242A20B600576CA0 /* IdentifiableEntity.swift in Sources */,
 				0A0595232304492700E71A60 /* AuthenticationPolicy.swift in Sources */,
 				0A05951A2304492700E71A60 /* EncryptionService.swift in Sources */,
@@ -977,7 +977,7 @@
 				559C710D242B47FC0070BEE0 /* ClockService.swift in Sources */,
 				0A0594F823043CC200E71A60 /* CommonCryptoEncryptionService.swift in Sources */,
 				0AAE7C0923044DDF00E7EB07 /* MockClockService.swift in Sources */,
-				0A0594F723043CC200E71A60 /* MockBiometricService.swift in Sources */,
+				0A0594F723043CC200E71A60 /* MockBiometryService.swift in Sources */,
 				0A0594F923043CC200E71A60 /* MockEncryptionService.swift in Sources */,
 				0A0594ED23043CC200E71A60 /* InMemoryGatekeeperRepository.swift in Sources */,
 			);
@@ -1027,15 +1027,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				559C710B242B47A50070BEE0 /* MockClockService.swift in Sources */,
-				55E130F0242B6CDF0062247D /* BiometricAuthService.swift in Sources */,
+				55E130F0242B6CDF0062247D /* BiometryService.swift in Sources */,
 				559C70FE242B405C0070BEE0 /* AccessService.swift in Sources */,
 				559C7100242B408D0070BEE0 /* AuthStatus.swift in Sources */,
 				559C710C242B47F90070BEE0 /* ClockService.swift in Sources */,
 				55E130DF242B5C7F0062247D /* AuthMethod.swift in Sources */,
 				559C7109242B443C0070BEE0 /* InMemoryUserRepository.swift in Sources */,
-				55E130E8242B604F0062247D /* MockBiometricService.swift in Sources */,
+				55E130E8242B604F0062247D /* MockBiometryService.swift in Sources */,
 				559C7105242B42540070BEE0 /* UserRepository.swift in Sources */,
-				55E130E7242B60480062247D /* BiometricService.swift in Sources */,
+				55E130E7242B60480062247D /* SystemBiometryService.swift in Sources */,
 				559C7107242B42C70070BEE0 /* User.swift in Sources */,
 				559C7102242B41410070BEE0 /* AccessPolicy.swift in Sources */,
 				559C710A242B47A00070BEE0 /* SystemClockService.swift in Sources */,

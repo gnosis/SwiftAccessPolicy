@@ -9,7 +9,7 @@ import IdentityAccessImplementations
 class DomainRegistryTests: XCTestCase {
 
     func test_exists() {
-        DomainRegistry.put(service: MockBiometricService(), for: BiometricAuthenticationService.self)
+        DomainRegistry.put(service: MockBiometryService(), for: BiometryService.self)
         DomainRegistry.put(service: MockEncryptionService(), for: EncryptionService.self)
         DomainRegistry.put(service: InMemoryUserRepository(), for: SingleUserRepository.self)
         DomainRegistry.put(service: IdentityService(), for: IdentityService.self)
