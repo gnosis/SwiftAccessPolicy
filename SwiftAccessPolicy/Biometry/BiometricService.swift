@@ -4,25 +4,44 @@
 
 import Foundation
 import LocalAuthentication
-import IdentityAccessDomainModel
-import IdentityAccessApplication
 
-extension BiometryType {
+/// Biometric authentication types
+///
+/// - none: no biometric authentication
+/// - touchID: touch ID
+/// - faceID: face ID
+public enum BiometryType {
+    case none, touchID, faceID
+}
 
-    var localizedDescription: String {
-        switch self {
-        case .touchID: return LocalizedString("ios_touchid", comment: "Touch ID")
-        case .faceID: return LocalizedString("ios_faceid", comment: "Face ID name")
-        case .none: return LocalizedString("ios_none", comment: "Unrecognized biometry type")
-        }
+public enum BiometryAuthenticationError: Error {
+    case cancelled
+}
+
+public struct BiometryReason {
+    let touchIDActivation: String
+    let touchIDAuth: String
+    let faceIDActivation: String
+    let faceIDAuth: String
+    let unrecognizedBiometryType: String
+
+    public init(touchIDActivation: String,
+                touchIDAuth: String,
+                faceIDActivation: String,
+                faceIDAuth: String,
+                unrecognizedBiometryType: String) {
+        self.touchIDActivation = touchIDActivation
+        self.touchIDAuth = touchIDAuth
+        self.faceIDActivation = faceIDActivation
+        self.faceIDAuth = faceIDAuth
+        self.unrecognizedBiometryType = unrecognizedBiometryType
     }
-
 }
 
 /// Biometric error
 ///
 /// - unexpectedBiometryType: encountered unrecognized biometry type.
-public enum BiometricServiceError: LoggableError {
+public enum BiometricServiceError: Error {
     case unexpectedBiometryType
 }
 
@@ -30,13 +49,7 @@ public final class BiometricService: BiometricAuthenticationService {
 
     private let contextProvider: () -> LAContext
     private var context: LAContext
-
-    private enum Strings {
-        static let activate = LocalizedString("ios_biometry_activation",
-                                              comment: "Reason to activate Touch ID or Face ID.")
-        static let unlock = LocalizedString("ios_biometry_reason",
-                                            comment: "Description of unlock with Touch ID.")
-    }
+    private let biometryReason: BiometryReason
 
     /// Creates new biometric service with LAContext provider.
     ///
@@ -45,7 +58,9 @@ public final class BiometricService: BiometricAuthenticationService {
     /// We have to re-create LAContext so that previous biometry authentication is not reused by the system.
     ///
     /// - Parameter localAuthenticationContext: closure that returns LAContext.
-    public init(localAuthenticationContext: @escaping @autoclosure () -> LAContext = LAContext()) {
+    public init(biometryReason: BiometryReason,
+                localAuthenticationContext: @escaping @autoclosure () -> LAContext = LAContext()) {
+        self.biometryReason = biometryReason
         self.contextProvider = localAuthenticationContext
         context = contextProvider()
     }
@@ -56,7 +71,8 @@ public final class BiometricService: BiometricAuthenticationService {
         var evaluationError: NSError?
         let result = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &evaluationError)
         if let error = evaluationError {
-            ApplicationServiceRegistry.logger.error("Can't evaluate policy: \(error)")
+            // TODO
+//            ApplicationServiceRegistry.logger.error("Can't evaluate policy: \(error)")
         }
         return result
     }
@@ -76,13 +92,32 @@ public final class BiometricService: BiometricAuthenticationService {
     }
 
     public func activate() throws {
-        _ = try? requestBiometry(reason: String(format: Strings.activate, biometryType.localizedDescription))
+        var reason: String
+        switch biometryType {
+        case .touchID:
+            reason = biometryReason.touchIDActivation
+        case .faceID:
+            reason = biometryReason.faceIDActivation
+        case .none:
+            reason = biometryReason.unrecognizedBiometryType
+        }
+        _ = try? requestBiometry(reason: reason)
     }
 
     public func authenticate() throws -> Bool {
-        return try requestBiometry(reason: String(format: Strings.unlock, biometryType.localizedDescription))
+        var reason: String
+        switch biometryType {
+        case .touchID:
+            reason = biometryReason.touchIDAuth
+        case .faceID:
+            reason = biometryReason.faceIDAuth
+        case .none:
+            reason = biometryReason.unrecognizedBiometryType
+        }
+        return try requestBiometry(reason: reason)
     }
 
+    // TODO: implement as result, without throw
     @discardableResult
     private func requestBiometry(reason: String) throws -> Bool {
         guard isAuthenticationAvailable else { return false }

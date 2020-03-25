@@ -16,7 +16,12 @@ class BiometricAuthenticationServiceTests: XCTestCase {
     override func setUp() {
         super.setUp()
         ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
-        biometricService = BiometricService(localAuthenticationContext: self.context)
+        let biometryReason = BiometryReason(touchIDActivation: "",
+                                            touchIDAuth: "",
+                                            faceIDActivation: "",
+                                            faceIDAuth: "",
+                                            unrecognizedBiometryType: "")
+        biometricService = BiometricService(biometryReason: biometryReason, localAuthenticationContext: self.context)
     }
 
     func test_activate_whenBiometricIsNotAvailable_thenIsNotActivated() throws {

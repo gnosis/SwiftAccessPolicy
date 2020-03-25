@@ -4,19 +4,6 @@
 
 import Foundation
 
-/// Biometric authentication types
-///
-/// - none: no biometric authentication
-/// - touchID: touch ID
-/// - faceID: face ID
-public enum BiometryType {
-    case none, touchID, faceID
-}
-
-public enum BiometryAuthenticationError: Error {
-    case cancelled
-}
-
 /// Represents biometric authentication service provided by the operating system
 public protocol BiometricAuthenticationService {
 

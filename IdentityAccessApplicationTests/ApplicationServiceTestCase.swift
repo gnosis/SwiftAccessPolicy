@@ -16,10 +16,10 @@ class ApplicationServiceTestCase: XCTestCase {
     let encryptionService = MockEncryptionService()
     let gatekeeperRepository = InMemoryGatekeeperRepository()
     let identityDomainService = IdentityService()
-    var clockService = MockClockService()
+    var clockService = IdentityAccessApplication.MockClockService()
 
     override func setUp() {
-        super.setUp()
+        super.setUp()        
         configureIdentityServiceDependencies()
         configureAuthenticationServiceDependencies()
     }

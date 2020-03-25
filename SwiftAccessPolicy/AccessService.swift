@@ -82,7 +82,14 @@ public class AccessService {
 
     // MARK: - Authentication
 
-    func isAuthMethodSupported(_ method: AuthMethod) -> Bool {
-        return false
-    }
+//    func isAuthMethodSupported(_ method: AuthMethod) -> Bool {
+//        var supportedSet: AuthMethod = .password
+//        if biometricService.biometryType == .touchID {
+//            supportedSet.insert(.touchID)
+//        }
+//        if biometricService.biometryType == .faceID {
+//            supportedSet.insert(.faceID)
+//        }
+//        return supportedSet.intersects(with: method)
+//    }
 }
