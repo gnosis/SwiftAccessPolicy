@@ -15,8 +15,8 @@ class InMemotyUserRepository: UserRepository {
         _users[user.id] = user
     }
 
-    func delete(user: User) {
-        _users.removeValue(forKey: user.id)
+    func delete(userID: UUID) {
+        _users.removeValue(forKey: userID)
     }
 
     func user(userID: UUID) -> User? {

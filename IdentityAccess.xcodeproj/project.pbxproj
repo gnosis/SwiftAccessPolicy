@@ -85,6 +85,7 @@
 		559C710B242B47A50070BEE0 /* MockClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594CE23043CC100E71A60 /* MockClockService.swift */; };
 		559C710C242B47F90070BEE0 /* ClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059543230449DC00E71A60 /* ClockService.swift */; };
 		559C710D242B47FC0070BEE0 /* ClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059543230449DC00E71A60 /* ClockService.swift */; };
+		55E130DF242B5C7F0062247D /* AuthenticationMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05953A230449DC00E71A60 /* AuthenticationMethod.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -372,7 +373,6 @@
 			children = (
 				0A059539230449DC00E71A60 /* ApplicationServiceRegistry.swift */,
 				0A05953D230449DC00E71A60 /* AuthenticationApplicationService.swift */,
-				0A05953A230449DC00E71A60 /* AuthenticationMethod.swift */,
 				0A059541230449DC00E71A60 /* AuthenticationRequest.swift */,
 				0A059538230449DC00E71A60 /* AuthenticationResult.swift */,
 				0A059542230449DC00E71A60 /* Interfaces */,
@@ -564,6 +564,7 @@
 		559C70E3242B3F540070BEE0 /* SwiftAccessPolicy */ = {
 			isa = PBXGroup;
 			children = (
+				55E130DE242B5C010062247D /* Auth */,
 				559C7103242B423E0070BEE0 /* User */,
 				0A0594CD23043CC100E71A60 /* Clock */,
 				559C70FD242B405C0070BEE0 /* AccessService.swift */,
@@ -592,6 +593,14 @@
 				559C7108242B443C0070BEE0 /* InMemoryUserRepository.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		55E130DE242B5C010062247D /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				0A05953A230449DC00E71A60 /* AuthenticationMethod.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1012,6 +1021,7 @@
 				559C70FE242B405C0070BEE0 /* AccessService.swift in Sources */,
 				559C7100242B408D0070BEE0 /* AuthStatus.swift in Sources */,
 				559C710C242B47F90070BEE0 /* ClockService.swift in Sources */,
+				55E130DF242B5C7F0062247D /* AuthenticationMethod.swift in Sources */,
 				559C7109242B443C0070BEE0 /* InMemoryUserRepository.swift in Sources */,
 				559C7105242B42540070BEE0 /* UserRepository.swift in Sources */,
 				559C7107242B42C70070BEE0 /* User.swift in Sources */,

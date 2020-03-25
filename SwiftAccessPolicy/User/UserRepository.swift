@@ -10,7 +10,7 @@ import Foundation
 
 public protocol UserRepository {
     func save(user: User)
-    func delete(user: User)
+    func delete(userID: UUID)
     func user(userID: UUID) -> User?
     func users() -> [User]
 }

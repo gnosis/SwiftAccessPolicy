@@ -8,14 +8,27 @@
 
 import Foundation
 
-public protocol User {
-    var id: UUID { get }
-    var encryptedPassword: String { get }
-    var sessionRenewedAt: Date? { get set }
-    var faileAuthAttempts: Int? { get set }
-    var accessBlockedAt: Date? { get set }
+public struct User {
+    let id: UUID
+    private var encryptedPassword: String
+    private var sessionRenewedAt: Date?
+    private var faileAuthAttempts: Int?
+    private var accessBlockedAt: Date?
 
-    func updatePassword(encryptedPassword: String)
-    func renewSession(at time: Date)
-    func blockAccess(at time: Date)
+    public init(userID: UUID, encryptedPassword: String) {
+        self.id = userID
+        self.encryptedPassword = encryptedPassword
+    }
+
+    mutating func updatePassword(encryptedPassword: String) {
+        self.encryptedPassword = encryptedPassword
+    }
+
+    mutating func renewSession(at time: Date) {
+        self.sessionRenewedAt = time
+    }
+
+    mutating func blockAccess(at time: Date) {
+        self.accessBlockedAt = time
+    }
 }
