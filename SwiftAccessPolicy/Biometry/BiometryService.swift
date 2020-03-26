@@ -25,7 +25,8 @@ public protocol BiometryService {
     /// Activates biometric authentication. This requests user to allow biometric authentication.
     ///
     /// - Throws: error if underlying service errored
-    func activate() throws
+    /// - Returns: True if user successfully activated biometry
+    func activate() throws -> Bool
 
     /// Authenticates user with activated biometry type.
     ///

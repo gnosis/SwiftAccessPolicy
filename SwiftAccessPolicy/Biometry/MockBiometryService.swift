@@ -30,7 +30,7 @@ public class MockBiometryService: BiometryService {
     public init() {}
 
     public func activate(completion: @escaping () -> Void) {
-        try? activate()
+        _ = try? activate()
         if shouldActivateImmediately {
             completion()
         } else {
@@ -38,8 +38,9 @@ public class MockBiometryService: BiometryService {
         }
     }
 
-    public func activate() throws {
+    public func activate() throws -> Bool {
         didActivate = true
+        return didActivate
     }
 
     public func authenticate() -> Bool {

@@ -44,18 +44,30 @@ public class AccessService {
 
     // MARK: - Users management
 
-    public func registerUser(userID: UUID = UUID(), password: String) throws {
-        guard userRepository.user(userID: userID) == nil else {
+    /// Registers user
+    ///
+    /// - Parameters:
+    ///   - userID: unique user ID
+    ///   - password: password
+    /// - Throws: AccessServiceError
+    /// - Returns: registered user id
+    public func registerUser(userID: UUID = UUID(), password: String) throws -> UUID {
+        do {
+            _ = try user(id: userID)
             throw AccessServiceError.userAlreadyExists
-        }
+        } catch {}
         let user = User(userID: userID, encryptedPassword: try encrypted(password))
         userRepository.save(user: user)
+        return user.id
+    }
+
+    // TODO: should we store biometry activatoin status for the user?
+    public func requestBiometryAccess(userID: UUID) throws -> Bool {
+        return try biometryService.activate()
     }
 
     public func deleteUser(userID: UUID) throws {
-        guard userRepository.user(userID: userID) != nil else {
-            throw AccessServiceError.userDoesNotExist
-        }
+        try _ = user(id: userID)
         userRepository.delete(userID: userID)
     }
 
@@ -63,16 +75,28 @@ public class AccessService {
         return userRepository.users()
     }
 
+    /// Update user password.
+    ///
+    /// - Parameters:
+    ///   - userID: unique user ID
+    ///   - password: new password
+    /// - Throws: AccessServiceError
     public func updateUserPassword(userID: UUID, password: String) throws {
-        guard var user = userRepository.user(userID: userID) else {
-            throw AccessServiceError.userDoesNotExist
-        }
+        var user = try self.user(id: userID)
         user.updatePassword(encryptedPassword: try encrypted(password))
         userRepository.save(user: user)
     }
 
+    /// Verifies if the password is correct
+    ///
+    /// - Parameters:
+    ///   - userID: unique user ID
+    ///   - password: password in plain text
+    /// - Throws: AccessServiceError
+    /// - Returns: true, if password matches user's password, false otherwise.
     public func verifyPassword(userID: UUID, password: String) throws -> Bool {
-        return false
+        let user = try self.user(id: userID)
+        return try user.encryptedPassword == encrypted(password)
     }
 
     private func encrypted(_ string: String) throws -> String {
@@ -82,6 +106,13 @@ public class AccessService {
         return SHA256.hash(data: data).description
     }
 
+    private func user(id: UUID) throws -> User {
+        guard let user = userRepository.user(userID: id) else {
+            throw AccessServiceError.userDoesNotExist
+        }
+        return user
+    }
+
     // MARK: - Authentication
 
     /// Checks wheter user is authenticated.
@@ -89,17 +120,16 @@ public class AccessService {
     /// - Parameters:
     ///   - userID: unique user ID
     ///   - time: current time
+    /// - Throws: AccessServiceError
     /// - Returns: authentication status
     public func authenticationStatus(userID: UUID, at time: Date = Date()) throws -> AuthStatus {
-        guard let user = userRepository.user(userID: userID) else {
-            throw AccessServiceError.userDoesNotExist
-        }
+        let user = try self.user(id: userID)
         if let sessionRenewedTime = user.sessionRenewedAt,
             sessionRenewedTime.addingTimeInterval(accessPolicy.sessionDuration) > time {
             return .authenticated
         } else if let accessBlockedTime = user.accessBlockedAt,
             accessBlockedTime.addingTimeInterval(accessPolicy.blockDuration) > time {
-            return .blocked
+            return .blocked(accessBlockedTime.addingTimeInterval(accessPolicy.blockDuration).timeIntervalSince(time))
         } else {
             return .notAuthenticated
         }
@@ -107,6 +137,11 @@ public class AccessService {
 
     // TODO
     public func logout() {}
+
+    // TODO
+    public func authenticationAttemptsLeft(userID: UUID) -> Int {
+        return 1
+    }
 
     /// Queries the operating system and application capabilities to determine if the `method` of authentication
     /// supported.
@@ -135,7 +170,9 @@ public class AccessService {
     /// - Returns: True if the authentication `method` can succeed.
     public func isAuthenticationMethodPossible(
         userID: UUID, method: AuthMethod, at time: Date = Date()) throws -> Bool {
-        guard try authenticationStatus(userID: userID, at: time) != .blocked else { return false }
+        if case AuthStatus.blocked(_) = try authenticationStatus(userID: userID, at: time) {
+            return false
+        }
         var possibleSet: AuthMethod = .password
         if isAuthenticationMethodSupported(.faceID) {
             possibleSet.insert(.faceID)
@@ -156,11 +193,12 @@ public class AccessService {
     /// - Throws: AccessServiceError, BiometryAuthenticationError
     /// - Returns: authentication result
     public func authenticateUser(userID: UUID, request: AuthRequest, at time: Date = Date()) throws -> AuthStatus {
-        guard try authenticationStatus(userID: userID, at: time) != .blocked else { return .blocked }
+        if case let AuthStatus.blocked(blockingTimeLeft) = try authenticationStatus(userID: userID, at: time) {
+            return .blocked(blockingTimeLeft)
+        }
         switch request {
         case .password(let password):
-            let user = userRepository.user(userID: userID)!
-            if try user.encryptedPassword == encrypted(password) {
+            if try verifyPassword(userID: userID, password: password) {
                 return try allowAccess(userID: userID, at: time)
             } else {
                 return try denyAccess(userID: userID, at: time)
@@ -186,16 +224,13 @@ public class AccessService {
     /// - Throws: AccessServiceError
     /// - Returns: authentication result
     public func denyAccess(userID: UUID, at time: Date = Date()) throws -> AuthStatus {
-        guard var user = userRepository.user(userID: userID) else {
-            throw AccessServiceError.userDoesNotExist
-        }
+        var user = try self.user(id: userID)
         user.denyAccess()
         if user.failedAuthAttempts > accessPolicy.maxFailedAttempts {
             user.blockAccess(at: time)
-            return .blocked
         }
         userRepository.save(user: user)
-        return .notAuthenticated
+        return try authenticationStatus(userID: userID, at: time)
     }
 
     /// Force allow acess for user.
@@ -206,9 +241,7 @@ public class AccessService {
     /// - Throws: AccessServiceError
     /// - Returns: authentication result
     public func allowAccess(userID: UUID, at time: Date = Date()) throws -> AuthStatus {
-        guard var user = userRepository.user(userID: userID) else {
-            throw AccessServiceError.userDoesNotExist
-        }
+        var user = try self.user(id: userID)
         user.renewSession(at: time)
         userRepository.save(user: user)
         return .authenticated

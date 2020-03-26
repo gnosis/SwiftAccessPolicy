@@ -31,10 +31,11 @@ public struct User {
     }
 
     mutating func denyAccess() {
+        self.sessionRenewedAt = nil
         self.failedAuthAttempts += 1
     }
 
-    mutating func blockAccess(at time: Date) {
+    mutating func blockAccess(at time: Date) {        
         self.accessBlockedAt = time
     }
 }

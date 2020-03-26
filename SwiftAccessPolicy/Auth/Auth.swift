@@ -27,8 +27,9 @@ public enum AuthRequest {
 }
 
 /// Authentication status
+/// For blocked status return the left blocking time interval
 public enum AuthStatus {
     case authenticated
     case notAuthenticated
-    case blocked
+    case blocked(TimeInterval)
 }

@@ -83,7 +83,7 @@ public final class SystemBiometryService: BiometryService {
         }
     }
 
-    public func activate() throws {
+    public func activate() throws -> Bool {
         var reason: String
         switch biometryType {
         case .touchID:
@@ -93,7 +93,7 @@ public final class SystemBiometryService: BiometryService {
         case .none:
             reason = biometryReason.unrecognizedBiometryType
         }
-        _ = try? requestBiometry(reason: reason)
+        return try requestBiometry(reason: reason)
     }
 
     public func authenticate() throws -> Bool {
