@@ -5,7 +5,7 @@
 import Foundation
 import LocalAuthentication
 
-
+// TODO: better name
 public enum BiometryAuthenticationError: Error {
     case cancelled
 }

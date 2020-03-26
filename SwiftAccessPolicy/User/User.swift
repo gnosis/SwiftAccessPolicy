@@ -10,10 +10,10 @@ import Foundation
 
 public struct User {
     let id: UUID
-    private var encryptedPassword: String
-    private var sessionRenewedAt: Date?
-    private var faileAuthAttempts: Int?
-    private var accessBlockedAt: Date?
+    private(set) var encryptedPassword: String
+    private(set) var sessionRenewedAt: Date?
+    private(set) var failedAuthAttempts: Int = 0
+    private(set) var accessBlockedAt: Date?
 
     public init(userID: UUID, encryptedPassword: String) {
         self.id = userID
@@ -26,6 +26,12 @@ public struct User {
 
     mutating func renewSession(at time: Date) {
         self.sessionRenewedAt = time
+        self.failedAuthAttempts = 0
+        self.accessBlockedAt = nil
+    }
+
+    mutating func denyAccess() {
+        self.failedAuthAttempts += 1
     }
 
     mutating func blockAccess(at time: Date) {

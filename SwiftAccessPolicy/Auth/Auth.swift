@@ -19,3 +19,16 @@ public struct AuthMethod: OptionSet {
         self.rawValue = rawValue
     }
 }
+
+/// Represents authentication intent
+public enum AuthRequest {
+    case password(String)
+    case biometry
+}
+
+/// Authentication status
+public enum AuthStatus {
+    case authenticated
+    case notAuthenticated
+    case blocked
+}
