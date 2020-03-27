@@ -9,17 +9,17 @@
 import Foundation
 import CryptoKit
 
+public enum AccessServiceError: Error {
+    case userAlreadyExists
+    case userDoesNotExist
+    case couldNotEncodeStringToUTF8Data
+}
+
 public class AccessService {
     private var accessPolicy: AccessPolicy
     private var userRepository: UserRepository
     private var clockService: ClockService
     private var biometryService: BiometryService
-
-    enum AccessServiceError: Error {
-        case userAlreadyExists
-        case userDoesNotExist
-        case couldNotEncodeStringToUTF8Data
-    }
 
     public init(accessPolicy: AccessPolicy, biometryReason: BiometryReason) {
         self.accessPolicy = accessPolicy
@@ -147,16 +147,16 @@ public class AccessService {
     /// supported.
     ///
     /// - Parameter method: authentication method
+    /// - Throws: BiometryServiceError
     /// - Returns: True if the authentication `method` is supported.
-    public func isAuthenticationMethodSupported(_ method: AuthMethod) -> Bool {
+    public func isAuthenticationMethodSupported(_ method: AuthMethod) throws -> Bool {
         var supportedSet: AuthMethod = .password
-        if biometryService.biometryType == .touchID {
-            supportedSet.insert(.touchID)
+        switch try biometryService.biometryType() {
+        case .touchID: supportedSet.insert(.touchID)
+        case .faceID: supportedSet.insert(.faceID)
+        default: break
         }
-        if biometryService.biometryType == .faceID {
-            supportedSet.insert(.faceID)
-        }
-        return supportedSet.intersects(with: method)
+        return !supportedSet.isDisjoint(with: method)
     }
 
     /// Queries current state of the app (for example, session state) and the state of biometric service to
@@ -166,23 +166,15 @@ public class AccessService {
     /// - Parameters:
     ///   - userID: unique user ID
     ///   - method: The authentication type
-    /// - Throws: AccessServiceError
+    /// - Throws: AccessServiceError, BiometryServiceError
     /// - Returns: True if the authentication `method` can succeed.
     public func isAuthenticationMethodPossible(
         userID: UUID, method: AuthMethod, at time: Date = Date()) throws -> Bool {
         if case AuthStatus.blocked(_) = try authenticationStatus(userID: userID, at: time) {
             return false
         }
-        var possibleSet: AuthMethod = .password
-        if isAuthenticationMethodSupported(.faceID) {
-            possibleSet.insert(.faceID)
-        }
-        if isAuthenticationMethodSupported(.touchID) {
-            possibleSet.insert(.touchID)
-        }
-        return possibleSet.intersects(with: method)
+        return try isAuthenticationMethodSupported(method)
     }
-
 
     /// Authenticate user
     ///
@@ -190,7 +182,7 @@ public class AccessService {
     ///   - userID: unique user ID
     ///   - password: not encrypted user password to authenticate with
     ///   - time: authentication time
-    /// - Throws: AccessServiceError, BiometryAuthenticationError
+    /// - Throws: AccessServiceError, BiometryServiceError
     /// - Returns: authentication result
     public func authenticateUser(userID: UUID, request: AuthRequest, at time: Date = Date()) throws -> AuthStatus {
         if case let AuthStatus.blocked(blockingTimeLeft) = try authenticationStatus(userID: userID, at: time) {
@@ -204,13 +196,9 @@ public class AccessService {
                 return try denyAccess(userID: userID, at: time)
             }
         case .biometry:
-            do {
-                if try biometryService.authenticate() {
-                    return try allowAccess(userID: userID, at: time)
-                } else {
-                    return try denyAccess(userID: userID, at: time)
-                }
-            } catch BiometryAuthenticationError.cancelled {
+            if try biometryService.authenticate() {
+                return try allowAccess(userID: userID, at: time)
+            } else {
                 return try denyAccess(userID: userID, at: time)
             }
         }

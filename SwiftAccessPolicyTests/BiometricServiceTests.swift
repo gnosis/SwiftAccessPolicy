@@ -4,33 +4,30 @@
 
 import XCTest
 import LocalAuthentication
-@testable import IdentityAccessImplementations
-import IdentityAccessDomainModel
-import IdentityAccessApplication
+@testable import SwiftAccessPolicy
 
-class BiometricAuthenticationServiceTests: XCTestCase {
-
-    var biometricService: BiometryService!
+class BiometryServiceTests: XCTestCase {
+    var biometryService: BiometryService!
     let context = MockLAContext()
 
     override func setUp() {
         super.setUp()
-        ApplicationServiceRegistry.put(service: MockLogger(), for: Logger.self)
         let biometryReason = BiometryReason(touchIDActivation: "",
                                             touchIDAuth: "",
                                             faceIDActivation: "",
                                             faceIDAuth: "",
                                             unrecognizedBiometryType: "")
-        biometricService = SystemBiometryService(biometryReason: biometryReason, localAuthenticationContext: self.context)
+        biometryService = SystemBiometryService(biometryReason: biometryReason,
+                                                localAuthenticationContext: self.context)
     }
 
-    func test_activate_whenBiometricIsNotAvailable_thenIsNotActivated() throws {
+    func test_activate_whenBiometryIsNotAvailable_thenIsNotActivated() throws {
         context.canEvaluatePolicy = false
         try activate()
         XCTAssertFalse(context.evaluatePolicyInvoked)
     }
 
-    func test_activate_whenBiometricIsAvailable_thenIsActivated() throws {
+    func test_activate_whenBiometryIsAvailable_thenIsActivated() throws {
         context.canEvaluatePolicy = true
         try activate()
         XCTAssertTrue(context.evaluatePolicyInvoked)
@@ -54,34 +51,29 @@ class BiometricAuthenticationServiceTests: XCTestCase {
         XCTAssertFalse(authenticate())
     }
 
-    func test_isAuthenticationAvailable_whenCanEvaluatePolicy_thenTrue() {
-        context.canEvaluatePolicy = true
-        XCTAssertTrue(biometricService.isAuthenticationAvailable)
-    }
-
     @available(iOS 10.0, *)
     func test_iOS_10_0_biometryType_whenNotAvailable_thenNone() {
         context.canEvaluatePolicy = false
-        XCTAssertEqual(biometricService.biometryType, .none)
+        XCTAssertEqual(try! biometryService.biometryType(), .none)
     }
 
     @available(iOS 10.0, *)
     func test_iOS_10_0_biometryType_whenAvailable_thenTouchID() {
         context.canEvaluatePolicy = true
-        XCTAssertEqual(biometricService.biometryType, .touchID)
+        XCTAssertEqual(try! biometryService.biometryType(), .touchID)
     }
 
     @available(iOS 11.0, *)
     func test_iOS_11_0_biometryType_whenNotAvailable_thenNone() {
         context.canEvaluatePolicy = false
-        XCTAssertEqual(biometricService.biometryType, .none)
+        XCTAssertEqual(try! biometryService.biometryType(), .none)
     }
 
     @available(iOS 11.0, *)
     func test_iOS_11_0_biometryType_whenAvailableAndBiometryFaceID_thenFaceID() {
         context.canEvaluatePolicy = true
         context.isBiometryTypeFaceID = true
-        XCTAssertEqual(biometricService.biometryType, .faceID)
+        XCTAssertEqual(try! biometryService.biometryType(), .faceID)
     }
 
     @available(iOS 11.0, *)
@@ -89,7 +81,7 @@ class BiometricAuthenticationServiceTests: XCTestCase {
         context.canEvaluatePolicy = true
         context.isBiometryTypeFaceID = false
         context.isBiometryTypeNone = false
-        XCTAssertEqual(biometricService.biometryType, .touchID)
+        XCTAssertEqual(try! biometryService.biometryType(), .touchID)
     }
 
     @available(iOS 11.0, *)
@@ -97,50 +89,55 @@ class BiometricAuthenticationServiceTests: XCTestCase {
         context.canEvaluatePolicy = true
         context.isBiometryTypeFaceID = false
         context.isBiometryTypeNone = true
-        XCTAssertEqual(biometricService.biometryType, .none)
+        XCTAssertEqual(try! biometryService.biometryType(), .none)
     }
 
+    func test_whenCheckingPossibilityToEvaluatePolicyFails_thenErrorIsThrown() {
+        context.evaluatePolicyError = LAError(.appCancel)
+        XCTAssertThrowsError(try biometryService.activate())
+    }
+
+    func test_whenEvaluatingPolicyFails_thenErrorIsThrown() {
+        context.evaluatePolicyError = LAError(.userCancel)
+        XCTAssertThrowsError(try biometryService.authenticate())
+    }
 }
 
-extension BiometricAuthenticationServiceTests {
+extension BiometryServiceTests {
 
     func authenticate() -> Bool {
         context.evaluatePolicyInvoked = false
-        let success = try! biometricService.authenticate()
+        let success = try! biometryService.authenticate()
         return success
     }
 
     func activate() throws {
         context.evaluatePolicyInvoked = false
-        try biometricService.activate()
+        _ = try biometryService.activate()
     }
-
 }
 
 class MockLAContext: LAContext {
-
-    var canEvaluatePolicy = true
-    var evaluatePolicyInvoked = false
-    var policyShouldSucceed = true
     var isBiometryTypeFaceID = false
     var isBiometryTypeNone = false
-
-    @available(iOS 11.0, *)
     override var biometryType: LABiometryType {
-        if #available(iOS 11.2, *) {
-            return isBiometryTypeFaceID ? .faceID : (isBiometryTypeNone ? .none : .touchID)
-        } else {
-            return isBiometryTypeFaceID ? .faceID : (isBiometryTypeNone ? .LABiometryNone : .touchID)
-        }
+        return isBiometryTypeFaceID ? .faceID : (isBiometryTypeNone ? .none : .touchID)
     }
 
+    var canEvaluatePolicy = true
     override func canEvaluatePolicy(_ policy: LAPolicy, error: NSErrorPointer) -> Bool {
         return canEvaluatePolicy
     }
 
+    var evaluatePolicyInvoked = false
+    var policyShouldSucceed = true
+    var evaluatePolicyError: LAError?
     override func evaluatePolicy(_ policy: LAPolicy, localizedReason: String, reply: @escaping (Bool, Error?) -> Void) {
         evaluatePolicyInvoked = true
+        if let evaluatePolicyError = evaluatePolicyError {
+            reply(false, evaluatePolicyError)
+            return
+        }
         reply(policyShouldSucceed, nil)
     }
-
 }

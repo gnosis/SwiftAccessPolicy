@@ -51,10 +51,10 @@ class AuthenticationApplicationServiceTests: ApplicationServiceTestCase {
 
     func test_isAuthenticationMethodSupported() {
         XCTAssertTrue(authenticationService.isAuthenticationMethodSupported(.password))
-        biometricService.biometryType = .faceID
+        biometricService._biometryType = .faceID
         XCTAssertTrue(authenticationService.isAuthenticationMethodSupported(.biometry))
         XCTAssertTrue(authenticationService.isAuthenticationMethodSupported(.faceID))
-        biometricService.biometryType = .touchID
+        biometricService._biometryType = .touchID
         XCTAssertTrue(authenticationService.isAuthenticationMethodSupported(.biometry))
         XCTAssertTrue(authenticationService.isAuthenticationMethodSupported(.touchID))
         XCTAssertFalse(authenticationService.isAuthenticationMethodSupported([]))
@@ -65,22 +65,22 @@ class AuthenticationApplicationServiceTests: ApplicationServiceTestCase {
     }
 
     func test_isAuthenticationMethodPossible_whenBlocked_thenNotPossible() throws {
-        biometricService.biometryType = .faceID
+        biometricService._biometryType = .faceID
         try blockAuthenticationThroughBiometry()
         XCTAssertFalse(authenticationService.isAuthenticationMethodPossible([.password, .touchID, .faceID]))
     }
 
-    func test_isAuthenticationMethodPossible_biometry() {
-        biometricService.isAuthenticationAvailable = true
-        biometricService.biometryType = .faceID
-        XCTAssertTrue(authenticationService.isAuthenticationMethodPossible(.faceID))
-        biometricService.biometryType = .touchID
-        XCTAssertTrue(authenticationService.isAuthenticationMethodPossible(.touchID))
-        biometricService.isAuthenticationAvailable = false
-        XCTAssertFalse(authenticationService.isAuthenticationMethodPossible(.biometry))
-        XCTAssertFalse(authenticationService.isAuthenticationMethodPossible(.faceID))
-        XCTAssertFalse(authenticationService.isAuthenticationMethodPossible(.touchID))
-    }
+//    func test_isAuthenticationMethodPossible_biometry() {
+//        biometricService.allowAuthentication()
+//        biometricService._biometryType = .faceID
+//        XCTAssertTrue(authenticationService.isAuthenticationMethodPossible(.faceID))
+//        biometricService._biometryType = .touchID
+//        XCTAssertTrue(authenticationService.isAuthenticationMethodPossible(.touchID))
+//        biometricService.prohibitAuthentication()
+//        XCTAssertFalse(authenticationService.isAuthenticationMethodPossible(.biometry))
+//        XCTAssertFalse(authenticationService.isAuthenticationMethodPossible(.faceID))
+//        XCTAssertFalse(authenticationService.isAuthenticationMethodPossible(.touchID))
+//    }
 
     func test_sessionDuration() throws {
         try authenticationService.configureSession(15)
@@ -120,14 +120,14 @@ class AuthenticationApplicationServiceTests: ApplicationServiceTestCase {
         XCTAssertFalse(authenticationService.isAuthenticationMethodPossible(.biometry))
     }
 
-    func test_isBiometryPossible_whenNotAvailable_thenFails() {
-        biometricService.isAuthenticationAvailable = false
-        XCTAssertFalse(authenticationService.isAuthenticationMethodPossible(.biometry))
-    }
+//    func test_isBiometryPossible_whenNotAvailable_thenFails() {
+//        biometricService.prohibitAuthentication()
+//        XCTAssertFalse(authenticationService.isAuthenticationMethodPossible(.biometry))
+//    }
 
     func test_isBiometryPossible_whenSupported_thenSuccess() {
-        biometricService.isAuthenticationAvailable = true
-        biometricService.biometryType = .touchID
+        biometricService.allowAuthentication()
+        biometricService._biometryType = .touchID
         XCTAssertTrue(authenticationService.isAuthenticationMethodPossible(.biometry))
     }
 

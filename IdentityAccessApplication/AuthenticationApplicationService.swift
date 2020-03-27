@@ -71,10 +71,10 @@ open class AuthenticationApplicationService {
     /// - Returns: True if the authentication `method` is supported.
     open func isAuthenticationMethodSupported(_ method: AuthMethod) -> Bool {
         var supportedSet: AuthMethod = .password
-        if biometricService.biometryType == .touchID {
+        if try! biometricService.biometryType() == .touchID {
             supportedSet.insert(.touchID)
         }
-        if biometricService.biometryType == .faceID {
+        if try! biometricService.biometryType() == .faceID {
             supportedSet.insert(.faceID)
         }
         return supportedSet.intersects(with: method)
@@ -89,10 +89,10 @@ open class AuthenticationApplicationService {
     open func isAuthenticationMethodPossible(_ method: AuthMethod) -> Bool {
         guard isAccessPossible else { return false }
         var possibleSet: AuthMethod = .password
-        if isAuthenticationMethodSupported(.faceID) && biometricService.isAuthenticationAvailable {
+        if isAuthenticationMethodSupported(.faceID) {
             possibleSet.insert(.faceID)
         }
-        if isAuthenticationMethodSupported(.touchID) && biometricService.isAuthenticationAvailable {
+        if isAuthenticationMethodSupported(.touchID) {
             possibleSet.insert(.touchID)
         }
         return possibleSet.intersects(with: method)

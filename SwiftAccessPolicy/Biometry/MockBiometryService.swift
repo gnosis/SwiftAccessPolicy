@@ -7,16 +7,9 @@ import IdentityAccessDomainModel
 
 /// Mock biometric service for testing purposes.
 public class MockBiometryService: BiometryService {
-
-    public var biometryType: BiometryType = .none
     private var savedActivationCompletion: (() -> Void)?
-    public var shouldActivateImmediately = false
     public var biometryAuthenticationResult = true
-    public var isAuthenticationAvailable = false
     private var savedAuthenticationCompletion: ((Bool) -> Void)?
-    public var shouldAuthenticateImmediately = false
-
-    public var didActivate = false
     private var shouldAuthenticate = false
 
     public func allowAuthentication() {
@@ -29,6 +22,12 @@ public class MockBiometryService: BiometryService {
 
     public init() {}
 
+    public var _biometryType: BiometryType = .touchID
+    public func biometryType() throws -> BiometryType {
+        return _biometryType
+    }
+
+    public var shouldActivateImmediately = false
     public func activate(completion: @escaping () -> Void) {
         _ = try? activate()
         if shouldActivateImmediately {
@@ -38,6 +37,7 @@ public class MockBiometryService: BiometryService {
         }
     }
 
+    public var didActivate = false
     public func activate() throws -> Bool {
         didActivate = true
         return didActivate
@@ -51,6 +51,7 @@ public class MockBiometryService: BiometryService {
         savedActivationCompletion?()
     }
 
+    public var shouldAuthenticateImmediately = false
     public func authenticate(completion: @escaping (Bool) -> Void) {
         if shouldAuthenticateImmediately {
             completion(biometryAuthenticationResult)

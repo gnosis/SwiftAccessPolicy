@@ -16,11 +16,11 @@ public enum BiometryType {
 /// Represents biometric authentication service provided by the operating system
 public protocol BiometryService {
 
-    /// True if biometric authentication may succeed
-    var isAuthenticationAvailable: Bool { get }
-
     /// Available biometry type
-    var biometryType: BiometryType { get }
+    ///
+    /// - Throws: error if underlying service errored
+    /// - Returns: available biometry type on the device
+    func biometryType() throws -> BiometryType
 
     /// Activates biometric authentication. This requests user to allow biometric authentication.
     ///
@@ -30,8 +30,8 @@ public protocol BiometryService {
 
     /// Authenticates user with activated biometry type.
     ///
-    /// - Returns: True if user authenticated successfully, false when authentication credentials were wrong.
     /// - Throws: Throws error when authentication was cancelled by user, system, or underlying auth mechanism failed.
+    /// - Returns: True if user authenticated successfully, false when authentication credentials were wrong.
     func authenticate() throws -> Bool
 
 }

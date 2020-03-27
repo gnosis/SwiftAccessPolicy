@@ -160,7 +160,7 @@ public class IdentityService: Assertable {
         let userOrNil: User?
         do {
             userOrNil = try authenticate()
-        } catch BiometryAuthenticationError.cancelled {
+        } catch BiometryServiceError.authenticationCanceled {
             return nil
         }
 

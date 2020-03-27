@@ -5,11 +5,7 @@
 import Foundation
 import LocalAuthentication
 
-// TODO: better name
-public enum BiometryAuthenticationError: Error {
-    case cancelled
-}
-
+/// Provides user facing text description of reasons to activate biometry and to authenticate with biometry.
 public struct BiometryReason {
     let touchIDActivation: String
     let touchIDAuth: String
@@ -30,11 +26,10 @@ public struct BiometryReason {
     }
 }
 
-/// Biometric error
-///
-/// - unexpectedBiometryType: encountered unrecognized biometry type.
-public enum BiometricServiceError: Error {
+public enum BiometryServiceError: Error {
     case unexpectedBiometryType
+    case canNotEvaluatePolicy(Error)
+    case authenticationCanceled
 }
 
 public final class SystemBiometryService: BiometryService {
@@ -57,35 +52,19 @@ public final class SystemBiometryService: BiometryService {
         context = contextProvider()
     }
 
-    public var isAuthenticationAvailable: Bool {
-        context = contextProvider()
-        context.interactionNotAllowed = false
-        var evaluationError: NSError?
-        let result = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &evaluationError)
-        if let error = evaluationError {
-            // TODO
-//            ApplicationServiceRegistry.logger.error("Can't evaluate policy: \(error)")
-        }
-        return result
-    }
-
-    public var biometryType: BiometryType {
-        guard isAuthenticationAvailable else { return .none }
+    public func biometryType() throws -> BiometryType {
+        guard try isBiometryAvailable() else { return .none }
         switch context.biometryType {
         case .faceID: return .faceID
         case .touchID: return .touchID
-        case .none:
-// TODO: Could not cast value of type 'IdentityAccessImplementationsTests.MockLogger'
-//            ApplicationServiceRegistry.logger.error("Received unexpected biometry type: none")
-            return .none
-        @unknown default:
-            return .none
+        case .none: return .none
+        @unknown default: return .none
         }
     }
 
     public func activate() throws -> Bool {
         var reason: String
-        switch biometryType {
+        switch try biometryType() {
         case .touchID:
             reason = biometryReason.touchIDActivation
         case .faceID:
@@ -98,7 +77,7 @@ public final class SystemBiometryService: BiometryService {
 
     public func authenticate() throws -> Bool {
         var reason: String
-        switch biometryType {
+        switch try biometryType() {
         case .touchID:
             reason = biometryReason.touchIDAuth
         case .faceID:
@@ -109,10 +88,9 @@ public final class SystemBiometryService: BiometryService {
         return try requestBiometry(reason: reason)
     }
 
-    // TODO: implement as result, without throw
     @discardableResult
     private func requestBiometry(reason: String) throws -> Bool {
-        guard isAuthenticationAvailable else { return false }
+        guard try isBiometryAvailable() else { return false }
         var success: Bool = false
         var evaluationError: Error?
         let semaphore = DispatchSemaphore(value: 0)
@@ -125,7 +103,6 @@ public final class SystemBiometryService: BiometryService {
         semaphore.wait()
         if let error = evaluationError {
             guard let laError = error as? LAError else { throw error }
-
             switch laError.code {
             case .authenticationFailed:
                 return false
@@ -137,17 +114,26 @@ public final class SystemBiometryService: BiometryService {
                  .biometryNotEnrolled,
                  .biometryNotAvailable,
                  .biometryLockout:
-                throw BiometryAuthenticationError.cancelled
-
+                throw BiometryServiceError.authenticationCanceled
             case .invalidContext,
                  .notInteractive:
                 fallthrough
-
             default:
-                throw error
+                throw BiometryServiceError.canNotEvaluatePolicy(error)
             }
         }
         return success
+    }
+
+    private func isBiometryAvailable() throws -> Bool {
+        context = contextProvider()
+        context.interactionNotAllowed = false
+        var evaluationError: NSError?
+        let result = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &evaluationError)
+        if let error = evaluationError {
+            throw BiometryServiceError.canNotEvaluatePolicy(error)
+        }
+        return result
     }
 
 }

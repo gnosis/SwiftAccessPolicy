@@ -26,7 +26,6 @@
 		0A0594F923043CC200E71A60 /* MockEncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594E623043CC200E71A60 /* MockEncryptionService.swift */; };
 		0A05950023043CFC00E71A60 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A0594FE23043CFC00E71A60 /* Localizable.strings */; };
 		0A05950423043D4300E71A60 /* SystemClockServiceIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05950123043D4300E71A60 /* SystemClockServiceIntegrationTests.swift */; };
-		0A05950523043D4300E71A60 /* BiometricServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05950223043D4300E71A60 /* BiometricServiceTests.swift */; };
 		0A05950623043D4300E71A60 /* EncryptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05950323043D4300E71A60 /* EncryptionServiceTests.swift */; };
 		0A0595192304492700E71A60 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0A0595072304492600E71A60 /* README.md */; };
 		0A05951A2304492700E71A60 /* EncryptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0595082304492600E71A60 /* EncryptionService.swift */; };
@@ -62,6 +61,7 @@
 		0AAE7C2A23044FCB00E7EB07 /* AuthenticationApplicationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7C2723044FCB00E7EB07 /* AuthenticationApplicationServiceTests.swift */; };
 		0AAE7C2B23044FCB00E7EB07 /* ApplicationServiceRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7C2823044FCB00E7EB07 /* ApplicationServiceRegistryTests.swift */; };
 		0AAE7C2C23044FCB00E7EB07 /* ApplicationServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE7C2923044FCB00E7EB07 /* ApplicationServiceTestCase.swift */; };
+		55063077242DEE45005AEC89 /* BiometricServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05950223043D4300E71A60 /* BiometricServiceTests.swift */; };
 		5570EF5A242A20B600576CA0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EF53242A20B600576CA0 /* Logger.swift */; };
 		5570EF5B242A20B600576CA0 /* MockLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EF54242A20B600576CA0 /* MockLogger.swift */; };
 		5570EF5C242A20B600576CA0 /* LoggableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570EF55242A20B600576CA0 /* LoggableError.swift */; };
@@ -362,7 +362,6 @@
 			children = (
 				0A0594D923043CC100E71A60 /* InMemoryUserRepositoryTests.swift */,
 				0A0594D323043CC100E71A60 /* InMemoryGatekeeperRepositoryTests.swift */,
-				0A05950223043D4300E71A60 /* BiometricServiceTests.swift */,
 				0A05950323043D4300E71A60 /* EncryptionServiceTests.swift */,
 				0A05950123043D4300E71A60 /* SystemClockServiceIntegrationTests.swift */,
 				0A05949223043B9100E71A60 /* IdentityAccessImplementationsTests.swift */,
@@ -582,6 +581,7 @@
 		559C70EE242B3F540070BEE0 /* SwiftAccessPolicyTests */ = {
 			isa = PBXGroup;
 			children = (
+				0A05950223043D4300E71A60 /* BiometricServiceTests.swift */,
 				559C70EF242B3F540070BEE0 /* SwiftAccessPolicyTests.swift */,
 				559C70F1242B3F540070BEE0 /* Info.plist */,
 			);
@@ -984,7 +984,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A05950523043D4300E71A60 /* BiometricServiceTests.swift in Sources */,
 				0AAE7C1823044E2F00E7EB07 /* InMemoryUserRepositoryTests.swift in Sources */,
 				0A05950423043D4300E71A60 /* SystemClockServiceIntegrationTests.swift in Sources */,
 				0A05950623043D4300E71A60 /* EncryptionServiceTests.swift in Sources */,
@@ -1042,6 +1041,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55063077242DEE45005AEC89 /* BiometricServiceTests.swift in Sources */,
 				559C70F0242B3F540070BEE0 /* SwiftAccessPolicyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
