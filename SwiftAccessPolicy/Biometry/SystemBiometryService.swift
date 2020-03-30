@@ -27,7 +27,6 @@ public struct BiometryReason {
 }
 
 public enum BiometryServiceError: Error {
-    case unexpectedBiometryType
     case canNotEvaluatePolicy(Error)
     case authenticationCanceled
 }

@@ -12,14 +12,13 @@ import CryptoKit
 public enum AccessServiceError: Error {
     case userAlreadyExists
     case userDoesNotExist
-    case couldNotEncodeStringToUTF8Data
 }
 
 public class AccessService {
     private var accessPolicy: AccessPolicy
     private var userRepository: UserRepository
     private var clockService: ClockService
-    private var biometryService: BiometryService
+    internal var biometryService: BiometryService
 
     public init(accessPolicy: AccessPolicy, biometryReason: BiometryReason) {
         self.accessPolicy = accessPolicy
@@ -45,23 +44,26 @@ public class AccessService {
     // MARK: - Users management
 
     /// Registers user
-    ///
     /// - Parameters:
-    ///   - userID: unique user ID
-    ///   - password: password
+    ///   - userID: unique user ID; default value is UUID()
+    ///   - password: plain text password
     /// - Throws: AccessServiceError
-    /// - Returns: registered user id
+    /// - Returns: registered user ID
+    @discardableResult
     public func registerUser(userID: UUID = UUID(), password: String) throws -> UUID {
-        do {
-            _ = try user(id: userID)
+        if (try? user(id: userID)) != nil {
             throw AccessServiceError.userAlreadyExists
-        } catch {}
-        let user = User(userID: userID, encryptedPassword: try encrypted(password))
+        }
+        let user = User(userID: userID, encryptedPassword: encrypted(password))
         userRepository.save(user: user)
         return user.id
     }
 
-    // TODO: should we store biometry activatoin status for the user?
+    /// Requests system biometry
+    /// - Parameter userID: unique user ID
+    /// - Throws: BiometryServiceError
+    /// - Returns: activation result
+    @discardableResult
     public func requestBiometryAccess(userID: UUID) throws -> Bool {
         return try biometryService.activate()
     }
@@ -71,46 +73,48 @@ public class AccessService {
         userRepository.delete(userID: userID)
     }
 
-    public func users() -> [User] {
-        return userRepository.users()
-    }
-
-    /// Update user password.
-    ///
-    /// - Parameters:
-    ///   - userID: unique user ID
-    ///   - password: new password
+    /// Get user by ID
+    /// - Parameter id: unique user ID
     /// - Throws: AccessServiceError
-    public func updateUserPassword(userID: UUID, password: String) throws {
-        var user = try self.user(id: userID)
-        user.updatePassword(encryptedPassword: try encrypted(password))
-        userRepository.save(user: user)
-    }
-
-    /// Verifies if the password is correct
-    ///
-    /// - Parameters:
-    ///   - userID: unique user ID
-    ///   - password: password in plain text
-    /// - Throws: AccessServiceError
-    /// - Returns: true, if password matches user's password, false otherwise.
-    public func verifyPassword(userID: UUID, password: String) throws -> Bool {
-        let user = try self.user(id: userID)
-        return try user.encryptedPassword == encrypted(password)
-    }
-
-    private func encrypted(_ string: String) throws -> String {
-        guard let data = string.data(using: .utf8) else {
-            throw AccessServiceError.couldNotEncodeStringToUTF8Data
-        }
-        return SHA256.hash(data: data).description
-    }
-
-    private func user(id: UUID) throws -> User {
+    /// - Returns: User object
+    public func user(id: UUID) throws -> User {
         guard let user = userRepository.user(userID: id) else {
             throw AccessServiceError.userDoesNotExist
         }
         return user
+    }
+
+    /// Get all users.
+    /// - Returns: array with User objects
+    public func users() -> [User] {
+        return userRepository.users()
+    }
+
+    /// Update user password
+    /// - Parameters:
+    ///   - userID: unique user ID
+    ///   - password: new plain text password
+    /// - Throws: AccessServiceError
+    public func updateUserPassword(userID: UUID, password: String) throws {
+        var user = try self.user(id: userID)
+        user.updatePassword(encryptedPassword: encrypted(password))
+        userRepository.save(user: user)
+    }
+
+    /// Verifies if the password is correct
+    /// - Parameters:
+    ///   - userID: unique user ID
+    ///   - password: plain text password
+    /// - Throws: AccessServiceError
+    /// - Returns: true, if password matches user's password, false otherwise.
+    public func verifyPassword(userID: UUID, password: String) throws -> Bool {
+        let user = try self.user(id: userID)
+        return user.encryptedPassword == encrypted(password)
+    }
+
+    private func encrypted(_ string: String) -> String {
+        // A conversion of a Swift string to UTF-8 data cannot fail.
+        return SHA256.hash(data: string.data(using: .utf8)!).description
     }
 
     // MARK: - Authentication

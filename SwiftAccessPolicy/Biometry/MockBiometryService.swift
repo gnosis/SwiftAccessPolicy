@@ -11,6 +11,7 @@ public class MockBiometryService: BiometryService {
     public var biometryAuthenticationResult = true
     private var savedAuthenticationCompletion: ((Bool) -> Void)?
     private var shouldAuthenticate = false
+    public var shouldThrow = false
 
     public func allowAuthentication() {
         shouldAuthenticate = true
@@ -39,6 +40,9 @@ public class MockBiometryService: BiometryService {
 
     public var didActivate = false
     public func activate() throws -> Bool {
+        if shouldThrow {
+            throw BiometryServiceError.authenticationCanceled
+        }
         didActivate = true
         return didActivate
     }

@@ -12,11 +12,11 @@ class BiometryServiceTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        let biometryReason = BiometryReason(touchIDActivation: "",
-                                            touchIDAuth: "",
-                                            faceIDActivation: "",
-                                            faceIDAuth: "",
-                                            unrecognizedBiometryType: "")
+        let biometryReason = BiometryReason(touchIDActivation: "Please activate TouchID",
+                                            touchIDAuth: "Login with TouchID",
+                                            faceIDActivation: "Please activate FaceID",
+                                            faceIDAuth: "Login with FaceID",
+                                            unrecognizedBiometryType: "Unrecognised biometry type.")
         biometryService = SystemBiometryService(biometryReason: biometryReason,
                                                 localAuthenticationContext: self.context)
     }
