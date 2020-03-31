@@ -17,13 +17,11 @@ public enum AccessServiceError: Error {
 public class AccessService {
     private var accessPolicy: AccessPolicy
     private var userRepository: UserRepository
-    private var clockService: ClockService
     internal var biometryService: BiometryService
 
     public init(accessPolicy: AccessPolicy, biometryReason: BiometryReason) {
         self.accessPolicy = accessPolicy
         self.userRepository = InMemotyUserRepository()
-        self.clockService = SystemClockService()
         self.biometryService = SystemBiometryService(biometryReason: biometryReason)
     }
 
@@ -31,10 +29,6 @@ public class AccessService {
 
     public func setUserRepository(_ userRepository: UserRepository) {
         self.userRepository = userRepository
-    }
-
-    public func setClockService(_ clockService: ClockService) {
-        self.clockService = clockService
     }
 
     public func setBiometryService(_ biometryService: BiometryService) {
@@ -106,7 +100,7 @@ public class AccessService {
     ///   - userID: unique user ID
     ///   - password: plain text password
     /// - Throws: AccessServiceError
-    /// - Returns: true, if password matches user's password, false otherwise.
+    /// - Returns: true, if password matches user's password, false otherwise
     public func verifyPassword(userID: UUID, password: String) throws -> Bool {
         let user = try self.user(id: userID)
         return user.encryptedPassword == encrypted(password)
@@ -119,13 +113,12 @@ public class AccessService {
 
     // MARK: - Authentication
 
-    /// Checks wheter user is authenticated.
-    ///
+    /// Checks wheter user is authenticated
     /// - Parameters:
     ///   - userID: unique user ID
-    ///   - time: current time
+    ///   - time: time of the check
     /// - Throws: AccessServiceError
-    /// - Returns: authentication status
+    /// - Returns: AuthStatus
     public func authenticationStatus(userID: UUID, at time: Date = Date()) throws -> AuthStatus {
         let user = try self.user(id: userID)
         if let sessionRenewedTime = user.sessionRenewedAt,
@@ -139,22 +132,14 @@ public class AccessService {
         }
     }
 
-    // TODO
-    public func logout() {}
-
-    // TODO
-    public func authenticationAttemptsLeft(userID: UUID) -> Int {
-        return 1
-    }
-
-    /// Queries the operating system and application capabilities to determine if the `method` of authentication
-    /// supported.
-    ///
-    /// - Parameter method: authentication method
+    /// Queries the operating system and application capabilities to determine if the
+    /// authentication `method` is supported
+    /// - Parameter method: AuthMethod
     /// - Throws: BiometryServiceError
-    /// - Returns: True if the authentication `method` is supported.
+    /// - Returns: true if the authentication `method` is supported
     public func isAuthenticationMethodSupported(_ method: AuthMethod) throws -> Bool {
         var supportedSet: AuthMethod = .password
+        if method == .password { return true }
         switch try biometryService.biometryType() {
         case .touchID: supportedSet.insert(.touchID)
         case .faceID: supportedSet.insert(.faceID)
@@ -165,11 +150,11 @@ public class AccessService {
 
     /// Queries current state of the app (for example, session state) and the state of biometric service to
     /// determine if the authentication `method` can potentially succeed at this time. Returns false if
-    /// access is blocked.
-    ///
+    /// access is blocked
     /// - Parameters:
     ///   - userID: unique user ID
     ///   - method: The authentication type
+    ///   - time: time of the check
     /// - Throws: AccessServiceError, BiometryServiceError
     /// - Returns: True if the authentication `method` can succeed.
     public func isAuthenticationMethodPossible(
@@ -181,13 +166,12 @@ public class AccessService {
     }
 
     /// Authenticate user
-    ///
     /// - Parameters:
     ///   - userID: unique user ID
-    ///   - password: not encrypted user password to authenticate with
+    ///   - password: plain text password
     ///   - time: authentication time
     /// - Throws: AccessServiceError, BiometryServiceError
-    /// - Returns: authentication result
+    /// - Returns: AuthStatus
     public func authenticateUser(userID: UUID, request: AuthRequest, at time: Date = Date()) throws -> AuthStatus {
         if case let AuthStatus.blocked(blockingTimeLeft) = try authenticationStatus(userID: userID, at: time) {
             return .blocked(blockingTimeLeft)
@@ -208,13 +192,13 @@ public class AccessService {
         }
     }
 
-    /// Force deny acess for user.
-    ///
+    /// Force deny acess for the user
     /// - Parameters:
     ///   - userID: unique user ID
     ///   - time: authentication time
     /// - Throws: AccessServiceError
-    /// - Returns: authentication result
+    /// - Returns: AuthStatus
+    @discardableResult
     public func denyAccess(userID: UUID, at time: Date = Date()) throws -> AuthStatus {
         var user = try self.user(id: userID)
         user.denyAccess()
@@ -225,17 +209,36 @@ public class AccessService {
         return try authenticationStatus(userID: userID, at: time)
     }
 
-    /// Force allow acess for user.
-    ///
+    /// Force allow acess for the user
     /// - Parameters:
     ///   - userID: unique user ID
     ///   - time: authentication time
     /// - Throws: AccessServiceError
-    /// - Returns: authentication result
+    /// - Returns: AuthStatus
+    @discardableResult
     public func allowAccess(userID: UUID, at time: Date = Date()) throws -> AuthStatus {
         var user = try self.user(id: userID)
         user.renewSession(at: time)
         userRepository.save(user: user)
         return .authenticated
+    }
+
+    /// Logout user
+    /// - Parameter userID: unique user ID
+    /// - Throws: AccessServiceError
+    public func logout(userID: UUID) throws {
+        var user = try self.user(id: userID)
+        user.logout()
+        userRepository.save(user: user)
+    }
+
+    /// Returns number of left authentication attempt before blocking the user
+    /// - Parameter userID: unique user ID
+    /// - Throws: AccessServiceError
+    /// - Returns: authentication attempts left
+    public func authenticationAttemptsLeft(userID: UUID) throws -> Int {
+        let user = try self.user(id: userID)
+        return accessPolicy.maxFailedAttempts > user.failedAuthAttempts ?
+            accessPolicy.maxFailedAttempts - user.failedAuthAttempts : 0
     }
 }

@@ -15,7 +15,7 @@ class AccessServiceTests: XCTestCase {
     var mockBiometryService = MockBiometryService()
 
     override func setUpWithError() throws {
-        let accessPolicy = AccessPolicy(sessionDuration: 10*60, maxFailedAttempts: 3, blockDuration: 15)
+        let accessPolicy = AccessPolicy(sessionDuration: 10*60, maxFailedAttempts: 1, blockDuration: 5)
         let biometryReason = BiometryReason(touchIDActivation: "Please activate TouchID",
                                             touchIDAuth: "Login with TouchID",
                                             faceIDActivation: "Please activate FaceID",
@@ -106,34 +106,210 @@ class AccessServiceTests: XCTestCase {
 
     // MARK: - Authentication
 
-    func test_authenticationStatus() {}
-    func test_authenticationStatus_whenBlockingPeriodFinished_thenNotBlocked() {}
-    func test_authenticationStatus_whenUserNotFound_thenThrows() {}
-    func test_logout() {}
-    func test_authenticationAttemptsLeft() {}
-    func test_isAuthenticationMethodSupported() {}
-    func test_isAuthenticationMethodSupported_whenBiometryServiceThrows_thenThrows() {}
-    func test_isAuthenticationMethodPossible_whenNotBlocked_thenPossible() {}
-    func test_isAuthenticationMethodPossible_whenBlocked_thenNotPossible() {}
-    func test_isAuthenticationMethodPossible_whenUserNotFound_thenThrows() {}
-    func test_isAuthenticationMethodPossible_whenBiometryServiceThrows_thenThrows() {}
-    func test_authenticateUser_whenBlocked_thenReturnsBlocked() {}
-    func test_authenticateUser_whenWrongPassword_thenAccessDenied() {}
-    func test_authenticateUser_whenCorrectPassword_thenAccessAllowed() {}
-    func test_authenticateUser_whenWrongBiometry_thenAccessDenied() {}
-    func test_authenticateUser_whenCorrectBiometry_thenAccessAllowed() {}
-    func test_authenticateUser_whenUserNotFound_thenThrows() {}
-    func test_authenticateUser_whenBiometryServiceThrows_thenThrows() {}
-    func test_denyAccess_whenNotExceedingMaxFailedAttempts_thenReturnsNotAuthenticated() {
-        // should it invalidate session?
+    func test_authenticationStatus_whenUserRegistered_thenNotAuthenticated() throws {
+        let userID = try accessService.registerUser(password: "password")
+        XCTAssertEqual(try accessService.authenticationStatus(userID: userID), .notAuthenticated)
     }
-    func test_denyAccess_whenExceedingMaxFailedAttempts_thenAccessBlocked() {
-        // check that max failed attempts continues counting
+
+    func test_authenticationStatus_whenUserAccessAllowed_thenAuthenticated() throws {
+        let userID = try accessService.registerUser(password: "password")
+        try accessService.allowAccess(userID: userID)
+        XCTAssertEqual(try accessService.authenticationStatus(userID: userID), .authenticated)
     }
-    func test_denyAccess_whenUserNotFound_thenThrows() {}
-    func test_allowAccess() {
-        // test that always updates session renewed time
-        // renews failed attempts counter
+
+    /// accessPolicy.maxFailedAttempts == 1; accessPolicy.blockDuration == 5
+    func test_authenticationStatus_blocked() throws {
+        let userID = try accessService.registerUser(password: "password")
+        XCTAssertEqual(try accessService.denyAccess(userID: userID), .notAuthenticated)
+        XCTAssertEqual(try accessService.authenticationStatus(userID: userID), .notAuthenticated)
+        let now = Date()
+        XCTAssertEqual(try accessService.denyAccess(userID: userID, at: now), .blocked(5))
+        XCTAssertEqual(try accessService.authenticationStatus(userID: userID, at: now), .blocked(5))
+        XCTAssertEqual(try accessService.authenticationStatus(
+            userID: userID, at: now.addingTimeInterval(4)), .blocked(1))
+        XCTAssertEqual(try accessService.authenticationStatus(
+            userID: userID, at: now.addingTimeInterval(5)), .notAuthenticated)
     }
-    func test_allowAccess_whenUserNotFound_thenThrows() {}
+
+    func test_authenticationStatus_whenUserNotFound_thenThrows() {
+        XCTAssertThrowsError(try accessService.authenticationStatus(userID: UUID())) { error in
+            XCTAssertEqual(error as? AccessServiceError, .userDoesNotExist)
+        }
+    }
+
+    func test_isAuthenticationMethodSupported() throws {
+        mockBiometryService._biometryType = .none
+        XCTAssertTrue(try accessService.isAuthenticationMethodSupported(.password))
+        XCTAssertFalse(try accessService.isAuthenticationMethodSupported(.biometry))
+
+        mockBiometryService._biometryType = .faceID
+        XCTAssertTrue(try accessService.isAuthenticationMethodSupported(.password))
+        XCTAssertTrue(try accessService.isAuthenticationMethodSupported(.faceID))
+        XCTAssertFalse(try accessService.isAuthenticationMethodSupported(.touchID))
+        XCTAssertTrue(try accessService.isAuthenticationMethodSupported(.biometry))
+
+        mockBiometryService._biometryType = .touchID
+        XCTAssertTrue(try accessService.isAuthenticationMethodSupported(.password))
+        XCTAssertTrue(try accessService.isAuthenticationMethodSupported(.touchID))
+        XCTAssertFalse(try accessService.isAuthenticationMethodSupported(.faceID))
+        XCTAssertTrue(try accessService.isAuthenticationMethodSupported(.biometry))
+    }
+
+    func test_isAuthenticationMethodSupported_whenBiometryServiceThrows_andBiometryRequested_thenThrows() {
+        mockBiometryService.shouldThrow = true
+        XCTAssertThrowsError(try accessService.isAuthenticationMethodSupported(.touchID))
+    }
+
+    func test_isAuthenticationMethodSupported_whenBiometryServiceThrows_andPasswordRequested_thenSuccess() {
+        mockBiometryService.shouldThrow = true
+        XCTAssertTrue(try accessService.isAuthenticationMethodSupported(.password))
+    }
+
+    func test_isAuthenticationMethodPossible_whenNotBlocked_thenReliesOnAuthSupportedMethod() throws {
+        let userID = try accessService.registerUser(password: "password")
+        mockBiometryService._biometryType = .none
+        XCTAssertTrue(try accessService.isAuthenticationMethodPossible(userID: userID, method: .password))
+        XCTAssertFalse(try accessService.isAuthenticationMethodPossible(userID: userID, method: .touchID))
+    }
+
+    /// accessPolicy.maxFailedAttempts == 1; accessPolicy.blockDuration == 5
+    func test_isAuthenticationMethodPossible_whenBlocked_thenNotPossible() throws {
+        let userID = try accessService.registerUser(password: "password")
+        try accessService.denyAccess(userID: userID)
+        XCTAssertTrue(try accessService.isAuthenticationMethodPossible(userID: userID, method: .password))
+        let now = Date()
+        try accessService.denyAccess(userID: userID, at: now)
+        XCTAssertFalse(try accessService.isAuthenticationMethodPossible(userID: userID, method: .password))
+        XCTAssertTrue(try accessService.isAuthenticationMethodPossible(
+            userID: userID, method: .password, at: now.addingTimeInterval(5)))
+    }
+
+    func test_isAuthenticationMethodPossible_whenUserNotFound_thenThrows() {
+        XCTAssertThrowsError(try accessService.isAuthenticationMethodPossible(userID: UUID(), method: .password)) {
+            error in
+            XCTAssertEqual(error as? AccessServiceError, .userDoesNotExist)
+        }
+    }
+
+    func test_isAuthenticationMethodPossible_whenBiometryServiceThrows_andBiometryRequested_thenThrows() throws {
+        mockBiometryService.shouldThrow = true
+        let userID = try accessService.registerUser(password: "password")
+        XCTAssertThrowsError(try accessService.isAuthenticationMethodPossible(userID: userID, method: .touchID))
+    }
+
+    func test_isAuthenticationMethodPossible_whenBiometryServiceThrows_andPasswordRequested_thenSuccess() throws {
+        mockBiometryService.shouldThrow = true
+        let userID = try accessService.registerUser(password: "password")
+        XCTAssertTrue(try accessService.isAuthenticationMethodPossible(userID: userID, method: .password))
+    }
+
+    /// accessPolicy.maxFailedAttempts == 1; accessPolicy.blockDuration == 5
+    func test_authenticateUser_whenBlocked_thenReturnsBlocked() throws {
+        let userID = try accessService.registerUser(password: "password")
+        try accessService.denyAccess(userID: userID)
+        let now = Date()
+        try accessService.denyAccess(userID: userID, at: now)
+        XCTAssertEqual(try accessService.authenticateUser(userID: userID, request: .password("password"), at: now),
+                       .blocked(5))
+    }
+
+    func test_authenticateUser_whenWrongPassword_thenAccessDenied() throws {
+        let userID = try accessService.registerUser(password: "password")
+        XCTAssertEqual(try accessService.authenticateUser(userID: userID, request: .password("wrong")),
+                       .notAuthenticated)
+    }
+
+    func test_authenticateUser_whenCorrectPassword_thenAccessAllowed() throws {
+        let userID = try accessService.registerUser(password: "password")
+        XCTAssertEqual(try accessService.authenticateUser(userID: userID, request: .password("password")),
+                       .authenticated)
+    }
+
+    func test_authenticateUser_whenWrongBiometry_thenAccessDenied() throws {
+        mockBiometryService.shouldAuthenticate = false
+        let userID = try accessService.registerUser(password: "password")
+        XCTAssertEqual(try accessService.authenticateUser(userID: userID, request: .biometry),
+                       .notAuthenticated)
+    }
+
+    func test_authenticateUser_whenCorrectBiometry_thenAccessAllowed() throws {
+        mockBiometryService.shouldAuthenticate = true
+        let userID = try accessService.registerUser(password: "password")
+        XCTAssertEqual(try accessService.authenticateUser(userID: userID, request: .biometry),
+                       .authenticated)
+    }
+
+    func test_authenticateUser_whenUserNotFound_thenThrows() {
+        XCTAssertThrowsError(try accessService.authenticateUser(userID: UUID(), request: .biometry)) { error in
+            XCTAssertEqual(error as? AccessServiceError, .userDoesNotExist)
+        }
+    }
+
+    func test_authenticateUser_whenBiometryServiceThrows_thenThrows() throws {
+        mockBiometryService.shouldThrow = true
+        let userID = try accessService.registerUser(password: "password")
+        XCTAssertThrowsError(try accessService.isAuthenticationMethodPossible(userID: userID, method: .touchID))
+    }
+
+    func test_denyAccess_whenNotExceedingMaxFailedAttempts_thenReturnsNotAuthenticated() throws {
+        let userID = try accessService.registerUser(password: "password")
+        XCTAssertEqual(try accessService.denyAccess(userID: userID), .notAuthenticated)
+    }
+
+    /// accessPolicy.maxFailedAttempts == 1; accessPolicy.blockDuration == 5
+    func test_denyAccess_whenExceedingMaxFailedAttempts_thenAccessBlocked() throws {
+        let userID = try accessService.registerUser(password: "password")
+        try accessService.denyAccess(userID: userID)
+        XCTAssertEqual(try accessService.authenticationAttemptsLeft(userID: userID), 0)
+        let now = Date()
+        XCTAssertEqual(try accessService.denyAccess(userID: userID, at: now), .blocked(5))
+        XCTAssertEqual(try accessService.authenticationAttemptsLeft(userID: userID), 0)
+        XCTAssertEqual(try accessService.denyAccess(userID: userID, at: now.addingTimeInterval(10)), .blocked(5))
+        XCTAssertEqual(try accessService.authenticationAttemptsLeft(userID: userID), 0)
+    }
+
+    func test_denyAccess_whenUserNotFound_thenThrows() {
+        XCTAssertThrowsError(try accessService.denyAccess(userID: UUID())) { error in
+            XCTAssertEqual(error as? AccessServiceError, .userDoesNotExist)
+        }
+    }
+
+    /// accessPolicy.maxFailedAttempts == 1; accessPolicy.blockDuration == 5
+    func test_allowAccess() throws {
+        let userID = try accessService.registerUser(password: "password")
+        try accessService.denyAccess(userID: userID)
+        try accessService.denyAccess(userID: userID)
+        XCTAssertEqual(try accessService.authenticationAttemptsLeft(userID: userID), 0)
+        XCTAssertFalse(try accessService.isAuthenticationMethodPossible(userID: userID, method: .password))
+
+        try accessService.allowAccess(userID: userID)
+        XCTAssertEqual(try accessService.authenticationAttemptsLeft(userID: userID), 1)
+        XCTAssertTrue(try accessService.isAuthenticationMethodPossible(userID: userID, method: .password))
+    }
+
+    func test_allowAccess_whenUserNotFound_thenThrows() {
+        XCTAssertThrowsError(try accessService.allowAccess(userID: UUID())) { error in
+            XCTAssertEqual(error as? AccessServiceError, .userDoesNotExist)
+        }
+    }
+
+    func test_logout() throws {
+        let userID = try accessService.registerUser(password: "password")
+        try accessService.allowAccess(userID: userID)
+        XCTAssertEqual(try accessService.authenticationStatus(userID: userID), .authenticated)
+        try accessService.logout(userID: userID)
+        XCTAssertEqual(try accessService.authenticationStatus(userID: userID), .notAuthenticated)
+    }
+
+    func test_logout_whenUserNotFound_thenThrows() {
+        XCTAssertThrowsError(try accessService.logout(userID: UUID())) { error in
+            XCTAssertEqual(error as? AccessServiceError, .userDoesNotExist)
+        }
+    }
+
+    func test_authenticationAttemptsLeft_whenUserNotFound_thenThrows() {
+        XCTAssertThrowsError(try accessService.authenticationAttemptsLeft(userID: UUID())) { error in
+            XCTAssertEqual(error as? AccessServiceError, .userDoesNotExist)
+        }
+    }
 }

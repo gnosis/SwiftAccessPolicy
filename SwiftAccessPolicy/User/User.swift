@@ -38,4 +38,10 @@ public struct User {
     mutating func blockAccess(at time: Date) {        
         self.accessBlockedAt = time
     }
+
+    mutating func logout() {
+        self.sessionRenewedAt = nil
+        self.failedAuthAttempts = 0
+        self.accessBlockedAt = nil
+    }
 }

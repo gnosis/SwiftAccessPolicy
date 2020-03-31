@@ -78,8 +78,6 @@
 		559C7105242B42540070BEE0 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C7104242B42540070BEE0 /* UserRepository.swift */; };
 		559C7107242B42C70070BEE0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C7106242B42C70070BEE0 /* User.swift */; };
 		559C7109242B443C0070BEE0 /* InMemoryUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C7108242B443C0070BEE0 /* InMemoryUserRepository.swift */; };
-		559C710A242B47A00070BEE0 /* SystemClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594CF23043CC100E71A60 /* SystemClockService.swift */; };
-		559C710B242B47A50070BEE0 /* MockClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594CE23043CC100E71A60 /* MockClockService.swift */; };
 		559C710C242B47F90070BEE0 /* ClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059543230449DC00E71A60 /* ClockService.swift */; };
 		559C710D242B47FC0070BEE0 /* ClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A059543230449DC00E71A60 /* ClockService.swift */; };
 		55E130DF242B5C7F0062247D /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05953A230449DC00E71A60 /* Auth.swift */; };
@@ -513,6 +511,7 @@
 			isa = PBXGroup;
 			children = (
 				5570EF51242A20B600576CA0 /* Common */,
+				0A0594CD23043CC100E71A60 /* Clock */,
 				0A05946623043B7F00E71A60 /* IdentityAccessDomainModel */,
 				0A05947123043B8000E71A60 /* IdentityAccessDomainModelTests */,
 				0A05948623043B9100E71A60 /* IdentityAccessImplementations */,
@@ -568,7 +567,6 @@
 			children = (
 				55E130DE242B5C010062247D /* Auth */,
 				559C7103242B423E0070BEE0 /* User */,
-				0A0594CD23043CC100E71A60 /* Clock */,
 				0A0594E123043CC200E71A60 /* Biometry */,
 				559C70FD242B405C0070BEE0 /* AccessService.swift */,
 				559C7101242B41410070BEE0 /* AccessPolicy.swift */,
@@ -1022,7 +1020,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				559C710B242B47A50070BEE0 /* MockClockService.swift in Sources */,
 				55E130F0242B6CDF0062247D /* BiometryService.swift in Sources */,
 				559C70FE242B405C0070BEE0 /* AccessService.swift in Sources */,
 				559C710C242B47F90070BEE0 /* ClockService.swift in Sources */,
@@ -1033,7 +1030,6 @@
 				55E130E7242B60480062247D /* SystemBiometryService.swift in Sources */,
 				559C7107242B42C70070BEE0 /* User.swift in Sources */,
 				559C7102242B41410070BEE0 /* AccessPolicy.swift in Sources */,
-				559C710A242B47A00070BEE0 /* SystemClockService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

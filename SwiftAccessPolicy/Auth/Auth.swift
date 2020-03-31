@@ -6,7 +6,6 @@ import Foundation
 
 /// Valid authentication methods supported by the application
 public struct AuthMethod: OptionSet {
-
     public let rawValue: Int
 
     public static let password = AuthMethod(rawValue: 1 << 0)
@@ -28,7 +27,7 @@ public enum AuthRequest {
 
 /// Authentication status
 /// For blocked status return the left blocking time interval
-public enum AuthStatus {
+public enum AuthStatus: Equatable {
     case authenticated
     case notAuthenticated
     case blocked(TimeInterval)

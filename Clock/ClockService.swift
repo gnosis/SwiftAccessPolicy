@@ -7,6 +7,7 @@ import Foundation
 /// The Clock protocol allows to test and decouple time-based algorithms.
 public protocol ClockService: class {
 
+    /// TODO: do we need it?
     /// Returns current time
     var currentTime: Date { get }
 

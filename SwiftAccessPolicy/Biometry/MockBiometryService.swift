@@ -3,28 +3,21 @@
 //
 
 import Foundation
-import IdentityAccessDomainModel
 
 /// Mock biometric service for testing purposes.
 public class MockBiometryService: BiometryService {
     private var savedActivationCompletion: (() -> Void)?
     public var biometryAuthenticationResult = true
     private var savedAuthenticationCompletion: ((Bool) -> Void)?
-    private var shouldAuthenticate = false
     public var shouldThrow = false
-
-    public func allowAuthentication() {
-        shouldAuthenticate = true
-    }
-
-    public func prohibitAuthentication() {
-        shouldAuthenticate = false
-    }
 
     public init() {}
 
     public var _biometryType: BiometryType = .touchID
     public func biometryType() throws -> BiometryType {
+        if shouldThrow {
+            throw BiometryServiceError.authenticationCanceled
+        }
         return _biometryType
     }
 
@@ -47,6 +40,7 @@ public class MockBiometryService: BiometryService {
         return didActivate
     }
 
+    public var shouldAuthenticate = false
     public func authenticate() -> Bool {
         return shouldAuthenticate
     }
