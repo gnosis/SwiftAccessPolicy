@@ -32,7 +32,6 @@ public enum BiometryServiceError: Error {
 }
 
 public final class SystemBiometryService: BiometryService {
-
     private let contextProvider: () -> LAContext
     private var context: LAContext
     private let biometryReason: BiometryReason
@@ -134,5 +133,4 @@ public final class SystemBiometryService: BiometryService {
         }
         return result
     }
-
 }
