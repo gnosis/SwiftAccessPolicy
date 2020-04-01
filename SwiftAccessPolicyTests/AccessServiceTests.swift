@@ -10,9 +10,8 @@ import XCTest
 @testable import SwiftAccessPolicy
 
 class AccessServiceTests: XCTestCase {
-
     var accessService: AccessService!
-    var mockBiometryService = MockBiometryService()
+    var mockBiometryService: MockBiometryService!
 
     override func setUpWithError() throws {
         let accessPolicy = AccessPolicy(sessionDuration: 10*60, maxFailedAttempts: 1, blockDuration: 5)
@@ -21,6 +20,7 @@ class AccessServiceTests: XCTestCase {
                                             faceIDActivation: "Please activate FaceID",
                                             faceIDAuth: "Login with FaceID",
                                             unrecognizedBiometryType: "Unrecognised biometry type.")
+        mockBiometryService = MockBiometryService(biometryReason: biometryReason)
         accessService = AccessService(accessPolicy: accessPolicy, biometryReason: biometryReason)
         accessService.biometryService = mockBiometryService
     }

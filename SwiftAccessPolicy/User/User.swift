@@ -9,11 +9,11 @@
 import Foundation
 
 public struct User {
-    let id: UUID
-    private(set) var encryptedPassword: String
-    private(set) var sessionRenewedAt: Date?
-    private(set) var failedAuthAttempts: Int = 0
-    private(set) var accessBlockedAt: Date?
+    public let id: UUID
+    public private(set) var encryptedPassword: String
+    public private(set) var sessionRenewedAt: Date?
+    public private(set) var failedAuthAttempts: Int = 0
+    public private(set) var accessBlockedAt: Date?
 
     public init(userID: UUID, encryptedPassword: String) {
         self.id = userID

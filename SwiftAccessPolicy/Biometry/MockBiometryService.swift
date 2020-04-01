@@ -6,9 +6,12 @@ import Foundation
 
 /// Mock biometric service for testing purposes.
 public class MockBiometryService: BiometryService {
+    public var biometryReason: BiometryReason
     public var shouldThrow = false
 
-    public init() {}
+    public init(biometryReason: BiometryReason) {
+        self.biometryReason = biometryReason
+    }
 
     public var _biometryType: BiometryType = .touchID
     public func biometryType() throws -> BiometryType {

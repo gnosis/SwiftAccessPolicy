@@ -5,44 +5,23 @@
 import Foundation
 import LocalAuthentication
 
-/// Provides user facing text description of reasons to activate biometry and to authenticate with biometry.
-public struct BiometryReason {
-    let touchIDActivation: String
-    let touchIDAuth: String
-    let faceIDActivation: String
-    let faceIDAuth: String
-    let unrecognizedBiometryType: String
-
-    public init(touchIDActivation: String,
-                touchIDAuth: String,
-                faceIDActivation: String,
-                faceIDAuth: String,
-                unrecognizedBiometryType: String) {
-        self.touchIDActivation = touchIDActivation
-        self.touchIDAuth = touchIDAuth
-        self.faceIDActivation = faceIDActivation
-        self.faceIDAuth = faceIDAuth
-        self.unrecognizedBiometryType = unrecognizedBiometryType
-    }
-}
-
 public enum BiometryServiceError: Error {
     case canNotEvaluatePolicy(Error)
     case authenticationCanceled
 }
 
-public final class SystemBiometryService: BiometryService {
+public class SystemBiometryService: BiometryService {
     private let contextProvider: () -> LAContext
     private var context: LAContext
-    private let biometryReason: BiometryReason
+    public private(set) var biometryReason: BiometryReason
 
     /// Creates new biometric service with LAContext provider.
-    ///
     /// Autoclosure here means that LAContext will be fetched every time from the closure.
     /// By default, it will be created anew when contextProvider() is called.
     /// We have to re-create LAContext so that previous biometry authentication is not reused by the system.
-    ///
-    /// - Parameter localAuthenticationContext: closure that returns LAContext.
+    /// - Parameters:
+    ///   - biometryReason: BiometryReason
+    ///   - localAuthenticationContext: closure that returns LAContext
     public init(biometryReason: BiometryReason,
                 localAuthenticationContext: @escaping @autoclosure () -> LAContext = LAContext()) {
         self.biometryReason = biometryReason
