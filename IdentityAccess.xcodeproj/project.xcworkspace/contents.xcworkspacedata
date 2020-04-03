@@ -1,35 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
-   <Group
-      location = "group:/Users/andrey/dev/SwiftAccessPolicy/Common"
-      name = "Common">
-      <Group
-         location = "group:Logger"
-         name = "Logger">
-         <FileRef
-            location = "group:Logger.swift">
-         </FileRef>
-         <FileRef
-            location = "group:MockLogger.swift">
-         </FileRef>
-         <FileRef
-            location = "group:LoggableError.swift">
-         </FileRef>
-      </Group>
-      <FileRef
-         location = "group:Assertable.swift">
-      </FileRef>
-      <FileRef
-         location = "group:BaseID.swift">
-      </FileRef>
-      <FileRef
-         location = "group:AbstractRegistry.swift">
-      </FileRef>
-      <FileRef
-         location = "group:IdentifiableEntity.swift">
-      </FileRef>
-   </Group>
    <FileRef
       location = "self:">
    </FileRef>
