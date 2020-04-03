@@ -8,17 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		55063077242DEE45005AEC89 /* BiometricServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05950223043D4300E71A60 /* BiometricServiceTests.swift */; };
+		55224BE624371C53008F32C7 /* MockBiometryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594E323043CC200E71A60 /* MockBiometryService.swift */; };
 		55500AC22431C7D400E2331A /* AccessServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55500AC12431C7D400E2331A /* AccessServiceTests.swift */; };
 		559C70EB242B3F540070BEE0 /* SwiftAccessPolicy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 559C70E2242B3F540070BEE0 /* SwiftAccessPolicy.framework */; };
 		559C70F2242B3F540070BEE0 /* SwiftAccessPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 559C70E4242B3F540070BEE0 /* SwiftAccessPolicy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		559C70FE242B405C0070BEE0 /* AccessService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C70FD242B405C0070BEE0 /* AccessService.swift */; };
-		559C7102242B41410070BEE0 /* AccessPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C7101242B41410070BEE0 /* AccessPolicy.swift */; };
 		559C7105242B42540070BEE0 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C7104242B42540070BEE0 /* UserRepository.swift */; };
 		559C7107242B42C70070BEE0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C7106242B42C70070BEE0 /* User.swift */; };
 		559C7109242B443C0070BEE0 /* InMemoryUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559C7108242B443C0070BEE0 /* InMemoryUserRepository.swift */; };
-		55E130DF242B5C7F0062247D /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05953A230449DC00E71A60 /* Auth.swift */; };
 		55E130E7242B60480062247D /* SystemBiometryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594E223043CC200E71A60 /* SystemBiometryService.swift */; };
-		55E130E8242B604F0062247D /* MockBiometryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0594E323043CC200E71A60 /* MockBiometryService.swift */; };
 		55E130F0242B6CDF0062247D /* BiometryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0595132304492700E71A60 /* BiometryService.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +35,6 @@
 		0A0594E323043CC200E71A60 /* MockBiometryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockBiometryService.swift; sourceTree = "<group>"; };
 		0A05950223043D4300E71A60 /* BiometricServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricServiceTests.swift; sourceTree = "<group>"; };
 		0A0595132304492700E71A60 /* BiometryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometryService.swift; sourceTree = "<group>"; };
-		0A05953A230449DC00E71A60 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		55500AC12431C7D400E2331A /* AccessServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessServiceTests.swift; sourceTree = "<group>"; };
 		559C70E2242B3F540070BEE0 /* SwiftAccessPolicy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftAccessPolicy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		559C70E4242B3F540070BEE0 /* SwiftAccessPolicy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftAccessPolicy.h; sourceTree = "<group>"; };
@@ -45,7 +42,6 @@
 		559C70EA242B3F540070BEE0 /* SwiftAccessPolicyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftAccessPolicyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		559C70F1242B3F540070BEE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		559C70FD242B405C0070BEE0 /* AccessService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessService.swift; sourceTree = "<group>"; };
-		559C7101242B41410070BEE0 /* AccessPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessPolicy.swift; sourceTree = "<group>"; };
 		559C7104242B42540070BEE0 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		559C7106242B42C70070BEE0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		559C7108242B443C0070BEE0 /* InMemoryUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryUserRepository.swift; sourceTree = "<group>"; };
@@ -70,16 +66,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A0594E123043CC200E71A60 /* Biometry */ = {
-			isa = PBXGroup;
-			children = (
-				0A0595132304492700E71A60 /* BiometryService.swift */,
-				0A0594E223043CC200E71A60 /* SystemBiometryService.swift */,
-				0A0594E323043CC200E71A60 /* MockBiometryService.swift */,
-			);
-			path = Biometry;
-			sourceTree = "<group>";
-		};
 		0AF2818E2074C18B00D3843D = {
 			isa = PBXGroup;
 			children = (
@@ -101,11 +87,12 @@
 		559C70E3242B3F540070BEE0 /* SwiftAccessPolicy */ = {
 			isa = PBXGroup;
 			children = (
-				55E130DE242B5C010062247D /* Auth */,
-				559C7103242B423E0070BEE0 /* User */,
-				0A0594E123043CC200E71A60 /* Biometry */,
 				559C70FD242B405C0070BEE0 /* AccessService.swift */,
-				559C7101242B41410070BEE0 /* AccessPolicy.swift */,
+				0A0595132304492700E71A60 /* BiometryService.swift */,
+				0A0594E223043CC200E71A60 /* SystemBiometryService.swift */,
+				559C7104242B42540070BEE0 /* UserRepository.swift */,
+				559C7106242B42C70070BEE0 /* User.swift */,
+				559C7108242B443C0070BEE0 /* InMemoryUserRepository.swift */,
 				559C70E4242B3F540070BEE0 /* SwiftAccessPolicy.h */,
 				559C70E5242B3F540070BEE0 /* Info.plist */,
 			);
@@ -115,29 +102,12 @@
 		559C70EE242B3F540070BEE0 /* SwiftAccessPolicyTests */ = {
 			isa = PBXGroup;
 			children = (
+				0A0594E323043CC200E71A60 /* MockBiometryService.swift */,
 				0A05950223043D4300E71A60 /* BiometricServiceTests.swift */,
 				559C70F1242B3F540070BEE0 /* Info.plist */,
 				55500AC12431C7D400E2331A /* AccessServiceTests.swift */,
 			);
 			path = SwiftAccessPolicyTests;
-			sourceTree = "<group>";
-		};
-		559C7103242B423E0070BEE0 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				559C7104242B42540070BEE0 /* UserRepository.swift */,
-				559C7106242B42C70070BEE0 /* User.swift */,
-				559C7108242B443C0070BEE0 /* InMemoryUserRepository.swift */,
-			);
-			path = User;
-			sourceTree = "<group>";
-		};
-		55E130DE242B5C010062247D /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				0A05953A230449DC00E71A60 /* Auth.swift */,
-			);
-			path = Auth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,13 +222,10 @@
 			files = (
 				55E130F0242B6CDF0062247D /* BiometryService.swift in Sources */,
 				559C70FE242B405C0070BEE0 /* AccessService.swift in Sources */,
-				55E130DF242B5C7F0062247D /* Auth.swift in Sources */,
 				559C7109242B443C0070BEE0 /* InMemoryUserRepository.swift in Sources */,
-				55E130E8242B604F0062247D /* MockBiometryService.swift in Sources */,
 				559C7105242B42540070BEE0 /* UserRepository.swift in Sources */,
 				55E130E7242B60480062247D /* SystemBiometryService.swift in Sources */,
 				559C7107242B42C70070BEE0 /* User.swift in Sources */,
-				559C7102242B41410070BEE0 /* AccessPolicy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55224BE624371C53008F32C7 /* MockBiometryService.swift in Sources */,
 				55063077242DEE45005AEC89 /* BiometricServiceTests.swift in Sources */,
 				55500AC22431C7D400E2331A /* AccessServiceTests.swift in Sources */,
 			);

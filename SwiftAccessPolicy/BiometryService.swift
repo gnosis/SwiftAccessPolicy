@@ -15,11 +15,11 @@ public enum BiometryType {
 
 /// Provides user facing text description of reasons to activate biometry and to authenticate with biometry.
 public struct BiometryReason {
-    let touchIDActivation: String
-    let touchIDAuth: String
-    let faceIDActivation: String
-    let faceIDAuth: String
-    let unrecognizedBiometryType: String
+    var touchIDActivation: String
+    var touchIDAuth: String
+    var faceIDActivation: String
+    var faceIDAuth: String
+    var unrecognizedBiometryType: String
 
     public init(touchIDActivation: String,
                 touchIDAuth: String,

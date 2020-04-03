@@ -9,30 +9,65 @@
 import Foundation
 import CryptoKit
 
+/// Access service policy configuration
+public struct AccessPolicy {
+    public let sessionDuration: TimeInterval
+    public let maxFailedAttempts: Int
+    public let blockDuration: TimeInterval
+
+    public init(
+        sessionDuration: TimeInterval,
+        maxFailedAttempts: Int,
+        blockDuration: TimeInterval) {
+        self.sessionDuration = sessionDuration
+        self.maxFailedAttempts = maxFailedAttempts
+        self.blockDuration = blockDuration
+    }
+}
+
+/// Valid authentication methods supported by the application
+public struct AuthMethod: OptionSet {
+    public let rawValue: Int
+
+    public static let password = AuthMethod(rawValue: 1 << 0)
+    public static let touchID = AuthMethod(rawValue: 1 << 1)
+    public static let faceID = AuthMethod(rawValue: 1 << 2)
+
+    public static let biometry: AuthMethod = [.touchID, .faceID]
+
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
+}
+
+/// Represents authentication intent
+public enum AuthRequest {
+    case password(String)
+    case biometry
+}
+
+/// Authentication status
+/// For blocked status return the left blocking time interval
+public enum AuthStatus: Equatable {
+    case authenticated
+    case notAuthenticated
+    case blocked(TimeInterval)
+}
+
 public enum AccessServiceError: Error {
     case userAlreadyExists
     case userDoesNotExist
 }
 
 public class AccessService {
-    private var accessPolicy: AccessPolicy
-    private var userRepository: UserRepository
-    internal var biometryService: BiometryService
+    public var accessPolicy: AccessPolicy
+    public var userRepository: UserRepository
+    public var biometryService: BiometryService
 
     public init(accessPolicy: AccessPolicy, biometryReason: BiometryReason) {
         self.accessPolicy = accessPolicy
         self.userRepository = InMemotyUserRepository()
         self.biometryService = SystemBiometryService(biometryReason: biometryReason)
-    }
-
-    // MARK: - Services
-
-    public func setUserRepository(_ userRepository: UserRepository) {
-        self.userRepository = userRepository
-    }
-
-    public func setBiometryService(_ biometryService: BiometryService) {
-        self.biometryService = biometryService
     }
 
     // MARK: - Users management

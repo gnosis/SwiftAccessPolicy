@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import SwiftAccessPolicy
 
 /// Mock biometric service for testing purposes.
 public class MockBiometryService: BiometryService {
