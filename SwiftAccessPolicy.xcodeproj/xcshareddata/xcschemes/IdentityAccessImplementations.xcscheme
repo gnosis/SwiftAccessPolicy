@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A05946423043B7F00E71A60"
-               BuildableName = "IdentityAccessDomainModel.framework"
-               BlueprintName = "IdentityAccessDomainModel"
-               ReferencedContainer = "container:IdentityAccess.xcodeproj">
+               BlueprintIdentifier = "0A05948423043B9100E71A60"
+               BuildableName = "IdentityAccessImplementations.framework"
+               BlueprintName = "IdentityAccessImplementations"
+               ReferencedContainer = "container:SwiftAccessPolicy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,7 +29,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:IdentityAccessApplicationTests/IdentityAccessDomainModel.xctestplan"
+            reference = "container:IdentityAccessApplicationTests/IdentityAccessImplementations.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>
@@ -38,10 +38,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0A05946C23043B8000E71A60"
-               BuildableName = "IdentityAccessDomainModelTests.xctest"
-               BlueprintName = "IdentityAccessDomainModelTests"
-               ReferencedContainer = "container:IdentityAccess.xcodeproj">
+               BlueprintIdentifier = "0A05948C23043B9100E71A60"
+               BuildableName = "IdentityAccessImplementationsTests.xctest"
+               BlueprintName = "IdentityAccessImplementationsTests"
+               ReferencedContainer = "container:SwiftAccessPolicy.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -66,10 +66,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0A05946423043B7F00E71A60"
-            BuildableName = "IdentityAccessDomainModel.framework"
-            BlueprintName = "IdentityAccessDomainModel"
-            ReferencedContainer = "container:IdentityAccess.xcodeproj">
+            BlueprintIdentifier = "0A05948423043B9100E71A60"
+            BuildableName = "IdentityAccessImplementations.framework"
+            BlueprintName = "IdentityAccessImplementations"
+            ReferencedContainer = "container:SwiftAccessPolicy.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

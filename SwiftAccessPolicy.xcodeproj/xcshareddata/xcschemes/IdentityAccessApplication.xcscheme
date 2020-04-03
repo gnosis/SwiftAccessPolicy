@@ -17,7 +17,7 @@
                BlueprintIdentifier = "0A0594A423043B9D00E71A60"
                BuildableName = "IdentityAccessApplication.framework"
                BlueprintName = "IdentityAccessApplication"
-               ReferencedContainer = "container:IdentityAccess.xcodeproj">
+               ReferencedContainer = "container:SwiftAccessPolicy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -41,7 +41,7 @@
                BlueprintIdentifier = "0A0594AC23043B9E00E71A60"
                BuildableName = "IdentityAccessApplicationTests.xctest"
                BlueprintName = "IdentityAccessApplicationTests"
-               ReferencedContainer = "container:IdentityAccess.xcodeproj">
+               ReferencedContainer = "container:SwiftAccessPolicy.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -69,7 +69,7 @@
             BlueprintIdentifier = "0A0594A423043B9D00E71A60"
             BuildableName = "IdentityAccessApplication.framework"
             BlueprintName = "IdentityAccessApplication"
-            ReferencedContainer = "container:IdentityAccess.xcodeproj">
+            ReferencedContainer = "container:SwiftAccessPolicy.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
