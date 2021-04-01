@@ -9,6 +9,7 @@ import SwiftAccessPolicy
 public class MockBiometryService: BiometryService {
     public var biometryReason: BiometryReason
     public var shouldThrow = false
+    public var isBiometrySupported = true
 
     public init(biometryReason: BiometryReason) {
         self.biometryReason = biometryReason

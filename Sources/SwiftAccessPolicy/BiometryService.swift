@@ -39,6 +39,9 @@ public protocol BiometryService {
     /// Structure with user facing messags related to biometry activatation and usage
     var biometryReason: BiometryReason { get }
 
+    /// Whether the device hardware supports biometry
+    var isBiometrySupported: Bool { get }
+
     /// Available biometry type
     /// - Throws: error if underlying service errored
     /// - Returns: available biometry type on the device

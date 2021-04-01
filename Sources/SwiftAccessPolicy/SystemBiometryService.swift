@@ -112,4 +112,17 @@ public class SystemBiometryService: BiometryService {
         }
         return result
     }
+
+    public var isBiometrySupported: Bool {
+        let context = LAContext()
+        _ = context.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil)
+        switch context.biometryType {
+        case .touchID, .faceID:
+            return true
+        case .none:
+            return false
+        @unknown default:
+            return false
+        }
+    }
 }
